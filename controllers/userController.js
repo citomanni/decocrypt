@@ -30,7 +30,8 @@ const deleteImageFromCloudinary = async (publicId) => {
 };
 
 module.exports.home = (req, res, next) => {
-  res.render("index");
+  // res.render("index");
+  res.render("home");
 };
 
 module.exports.getUser = catchAsync(async (req, res, next) => {
