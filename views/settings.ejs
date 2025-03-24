@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cryptocito | Cosmos ⚛️</title>
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+    <!-- qrious library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+
+    <!-- ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/admin/assets/images/logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/admin/assets/images/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/admin/assets/images/logo/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    /> 
+    -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/bootstrap.min.css" />
+    <link rel="stylesheet" href="/settings-styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div id="goback">
+        <span
+          ><i
+            style="font-size: 22px; color: #3c5df1"
+            class="bi bi-chevron-left"
+          ></i
+        ></span>
+      </div>
+
+      <script>
+        document
+          .getElementById("goback")
+          .addEventListener("click", function () {
+            window.history.back();
+          });
+      </script>
+
+      <div style="display: flex; align-items: center">
+        <h2 class="header__logo1 mb-sm gradient-text">Cryptocito</h2>
+        <img
+          style="margin-right: 4px"
+          class="h4 mb-0 text-white text-uppercase d-lg-inline-block"
+          src="/assets/images/cosmos-globe.png"
+          alt="logo"
+          width="25"
+          height="25"
+        />
+      </div>
+      <ul style="display: none" class="navbar__items">
+        <li class="navbar__items--1">
+          <a href="#" class="nav-link">About </a>
+        </li>
+        <li class="navbar__items--2">
+          <a href="#" class="nav-link">Discover</a>
+        </li>
+        <li class="navbar__items--3">
+          <a href="#" class="nav-link">Get Started</a>
+        </li>
+      </ul>
+
+      <button style="display: none" class="hamburger">
+        <img src="./images/icon-hamburger.svg" alt="hamburger" id="img1" />
+      </button>
+    </nav>
+
+    <section class="py-5 my-5">
+      <div class="container">
+        <h1
+          style="
+            color: white;
+            text-shadow: 1px 1px 2px gray, 0 0 25px #5f3dc4, 0 0 5px #4c319d;
+          "
+          class="mb-5"
+        >
+          Account Settings
+        </h1>
+        <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+          <div class="profile-tab-nav border-right">
+            <div class="p-4">
+              <div class="img-circle text-center mb-3">
+                <label for="profileImageInput" style="cursor: pointer">
+                  <img
+                    src="<%= data.user.profilePic %>"
+                    alt="Profile Image"
+                    class="shadow"
+                  />
+                  <input
+                    type="file"
+                    id="profileImageInput"
+                    style="display: none"
+                    accept="image/*"
+                    onchange="uploadProfilePic(this)"
+                  />
+                </label>
+              </div>
+              <h4 class="text-center"><%= data.user.fullname %></h4>
+            </div>
+
+            <script>
+              function uploadProfilePic(input) {
+                const file = input.files[0];
+                if (file) {
+                  const formData = new FormData();
+                  formData.append("profilePicture", file);
+
+                  const userId = document.getElementById("data-user-id").value;
+
+                  const toastContainer =
+                    document.getElementById("toast-container");
+                  toastContainer.textContent = "uploading..";
+                  toastContainer.style.display = "block";
+                  setTimeout(() => {
+                    toastContainer.style.display = "none";
+                  }, 3800);
+
+                  fetch(`/users/${userId}/profile-picture`, {
+                    method: "PUT",
+                    body: formData,
+                  })
+                    .then((response) => response.json())
+                    .then((data) => {
+                      console.log("Profile picture updated:", data);
+                      const reader = new FileReader();
+                      reader.onload = function (e) {
+                        document.querySelector(".img-circle img").src =
+                          e.target.result;
+                      };
+                      reader.readAsDataURL(file);
+                    })
+                    .catch((error) => {
+                      console.error("Error updating profile picture:", error);
+                    });
+                }
+              }
+            </script>
+
+            <!-- <div class="p-4">
+              <div class="img-circle text-center mb-3">
+                <label for="profileImageInput" style="cursor: pointer">
+                  <img
+                    src="/assets/images/default-user.jpeg"
+                    alt="Profile Image"
+                    class="shadow"
+                  />
+                  <input
+                    type="file"
+                    id="profileImageInput"
+                    style="display: none"
+                    accept="image/*"
+                    onchange="displayImage(this)"
+                  />
+                </label>
+                <!-- <img src="/assets/images/default-user.jpeg"" alt="Image"
+                class="shadow" /> 
+              </div>
+              <h4 class="text-center"><%= data.user.fullname %></h4>
+            </div>
+            <script>
+              function displayImage(input) {
+                const file = input.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = function (e) {
+                    document.querySelector(".img-circle img").src =
+                      e.target.result;
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }
+            </script> -->
+            <div
+              class="nav flex-column nav-pills"
+              id="v-pills-tab"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <a
+                class="nav-link active"
+                id="account-tab"
+                data-toggle="pill"
+                href="#account"
+                role="tab"
+                aria-controls="account"
+                aria-selected="true"
+              >
+                <i class="fa fa-home text-center mr-1"></i>
+                <span style="font-size: 1rem">Account</span>
+              </a>
+              <a
+                class="nav-link"
+                id="password-tab"
+                data-toggle="pill"
+                href="#password"
+                role="tab"
+                aria-controls="password"
+                aria-selected="false"
+              >
+                <i class="fa fa-key text-center mr-1"></i>
+                <span style="font-size: 1rem">Password</span>
+              </a>
+              <a
+                class="nav-link"
+                id="security-tab"
+                data-toggle="pill"
+                href="#security"
+                role="tab"
+                aria-controls="security"
+                aria-selected="false"
+              >
+                <i class="fa fa-user text-center mr-1"></i>
+                <span style="font-size: 1rem">Wallet Address</span>
+              </a>
+              <a
+                class="nav-link"
+                id="application-tab"
+                data-toggle="pill"
+                href="#application"
+                role="tab"
+                aria-controls="application"
+                aria-selected="false"
+              >
+                <i class="fa fa-sliders-h text-center mr-1"></i>
+                <span style="font-size: 1rem">Type</span>
+              </a>
+              <a
+                class="nav-link"
+                id="notification-tab"
+                data-toggle="pill"
+                href="#notification"
+                role="tab"
+                aria-controls="notification"
+                aria-selected="false"
+              >
+                <i class="fa fa-cog text-center mr-1"></i>
+                <span style="font-size: 1rem">Advanced</span>
+              </a>
+            </div>
+          </div>
+          <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="account"
+              role="tabpanel"
+              aria-labelledby="account-tab"
+            >
+              <h3 class="mb-4">Account Settings</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" id="first-name"
+                    value="<%= data.user.fullname.split(" ")[0] %>" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" id="last-name"
+                    value="<%= data.user.fullname.split(" ").slice(1).join(" ")
+                    %>"" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      value="<%=
+                    data.user.email %>"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Phone number</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phone"
+                      value="<%=
+                    data.user.phone %>"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="username"
+                      placeholder="Username"
+                      value="<%=
+                    data.user.username %>"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Country</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="country"
+                      value="<%=
+                    data.user.country %>"
+                    />
+                  </div>
+                </div>
+                <input
+                  type="hidden"
+                  id="data-user-id"
+                  name="data-user-id"
+                  value="<%= data.user._id %>"
+                />
+              </div>
+              <div>
+                <button class="btn btn-primary personal-det-save">Save</button>
+                <!-- <button class="btn btn-light">Cancel</button> -->
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="password"
+              role="tabpanel"
+              aria-labelledby="password-tab"
+            >
+              <h3 class="mb-4">Password Settings</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Old password</label>
+                    <input
+                      type="password"
+                      id="old-password"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>New password</label>
+                    <input
+                      type="password"
+                      id="new-password"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Confirm new password</label>
+                    <input
+                      type="password"
+                      id="confirm-password"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary update password-save">
+                  Save
+                </button>
+                <!-- <button class="btn btn-light">Cancel</button> -->
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="security"
+              role="tabpanel"
+              aria-labelledby="security-tab"
+            >
+              <h3 class="mb-4">Wallet Address</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div>
+                      <label>Bitcoin address</label>
+                      <input
+                        type="text"
+                        id="btc-address"
+                        class="form-control"
+                      />
+                    </div>
+                    <div style="margin-top: 10px">
+                      <button class="btn btn-primary wallet-addr-save">
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  id="barcode-container"
+                  class="col-md-6 <%= data.user.walletAddress ? '' : 'disappear' %>"
+                >
+                  <div class="form-group">
+                    <div style="display: flex; flex-direction: column">
+                      <label>Receive BTC</label>
+                      <div class="form-group">
+                        <canvas id="btcQRCode"></canvas>
+                      </div>
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        align-items: center;
+                        gap: 0.3rem;
+                        /* margin-top: 10px; */
+                        width: 100%;
+                      "
+                    >
+                      <img
+                        src="/funding/images/BTC-icon.png"
+                        width="35"
+                        height="35"
+                        alt=""
+                        class="main--logo"
+                        style="border-radius: 50%"
+                      />
+                      <label
+                        id="wallet-address-label"
+                        style="
+                          margin-top: 10px;
+                          word-wrap: break-word;
+                          width: 100%;
+                          padding-right: 2rem;
+                        "
+                        ><%= data.user.walletAddress %></label
+                      >
+                    </div>
+                  </div>
+                  <script>
+                    const btcAddress = "<%= data.user.walletAddress %>";
+
+                    if (typeof QRious !== "undefined") {
+                      const qr = new QRious({
+                        element: document.getElementById("btcQRCode"),
+                        value: btcAddress,
+                        size: 250,
+                      });
+                    } else {
+                      console.error("QRious library is not loaded.");
+                    }
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="application"
+              role="tabpanel"
+              aria-labelledby="application-tab"
+            >
+              <h3 class="mb-4">Account Type</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input exclusive-checkbox"
+                      type="checkbox" value="" id="app-check" <%= data.user.type
+                      === "New Trade" ? 'checked' : '' %> />
+                      <label class="form-check-label" for="app-check"
+                        >New Trade</label
+                      >
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input exclusive-checkbox"
+                      type="checkbox" value="" id="defaultCheck2" <%=
+                      data.user.type === "Recovery" ? 'checked' : '' %> />
+                      <label class="form-check-label" for="defaultCheck2"
+                        >Recovery</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary update trade-type-save">
+                  Save
+                </button>
+                <!-- <button class="btn btn-light">Cancel</button> -->
+              </div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  const exclusiveCheckboxes = document.querySelectorAll(
+                    ".exclusive-checkbox"
+                  );
+
+                  exclusiveCheckboxes.forEach((checkbox) => {
+                    checkbox.addEventListener("change", function () {
+                      if (this.checked) {
+                        exclusiveCheckboxes.forEach((otherCheckbox) => {
+                          if (otherCheckbox !== this) {
+                            otherCheckbox.checked = false;
+                          }
+                        });
+                      }
+                    });
+                  });
+                });
+              </script>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="notification"
+              role="tabpanel"
+              aria-labelledby="notification-tab"
+            >
+              <h3 class="mb-4">Advanced Controls</h3>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="Auto
+                  Pilot" id="auto-pilot" <%= data.user.autoPilot ? 'checked' :
+                  '' %> />
+                  <label class="form-check-label" for="notification1">
+                    Auto Pilot
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"
+                  value="Auto-Adaptive Learning" id="adaptive-learning" <%=
+                  data.user.adaptiveLearning ? 'checked' : '' %> />
+                  <label class="form-check-label" for="notification2">
+                    Auto-Adaptive Learning
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox"
+                  value="AI-Optimized Risk Management" id="risk-management" <%=
+                  data.user.riskManagement ? 'checked' : '' %> />
+                  <label class="form-check-label" for="notification3">
+                    AI-Optimized Risk Management
+                  </label>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-primary advanced-det-save">Save</button>
+                <!-- <button class="btn btn-light">Cancel</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="toast-container"></div>
+    <footer class="footer">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6 m-auto text-center">
+          <div class="copyright">
+            <p>Cryptocito&copy; next generation trading..</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const userId = document.getElementById("data-user-id").value;
+
+        const saveButton = document.querySelector(".personal-det-save");
+        const saveButton1 = document.querySelector(".password-save");
+        const saveButton2 = document.querySelector(".wallet-addr-save");
+        const saveButton3 = document.querySelector(".trade-type-save");
+        const saveButton4 = document.querySelector(".advanced-det-save");
+
+        // Listen for the "Save" button click
+        saveButton.addEventListener("click", function () {
+          // Create an object to store form data
+          const formData = {
+            fullname:
+              document.getElementById("first-name").value +
+              " " +
+              document.getElementById("last-name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            username: document.getElementById("username").value,
+            country: document.getElementById("country").value,
+          };
+
+          // Send a PUT request to the /users/:id route
+          fetch(`/users/${userId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Handle the response as needed
+              console.log("PUT request response:", data);
+
+              // Reload the page after successful submission
+              location.reload();
+            })
+            .catch((error) => {
+              console.error("Error during PUT request:", error);
+            });
+        });
+
+        saveButton1.addEventListener("click", async function () {
+          // Validate old password
+          const oldPassword = document.getElementById("old-password").value;
+          const response = await fetch(`/users/${userId}`);
+          const userData = await response.json();
+          const errorMessages = document.querySelectorAll(".error-message");
+          errorMessages.forEach((errorMessage) => errorMessage.remove());
+
+          if (oldPassword !== userData.data.user.password) {
+            // Display an error for incorrect old password
+            const errorMessage = document.createElement("div");
+            errorMessage.className = "error-message";
+            errorMessage.textContent = "Incorrect password";
+            document
+              .getElementById("old-password")
+              .parentNode.appendChild(errorMessage);
+            return;
+          }
+
+          // Check if new password and confirm password match
+          const newPassword = document.getElementById("new-password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          if (newPassword !== confirmPassword) {
+            // Display an error for mismatched passwords
+            const errorMessage = document.createElement("div");
+            errorMessage.className = "error-message";
+            errorMessage.textContent = "Passwords do not match";
+
+            document
+              .getElementById("new-password")
+              .parentNode.appendChild(errorMessage);
+            document
+              .getElementById("confirm-password")
+              .parentNode.appendChild(errorMessage);
+            return;
+          }
+
+          // Only if passwords match, proceed to update the password
+          const formData = {
+            password: newPassword,
+          };
+
+          try {
+            // Send a PUT request to the /users/:id route
+            const updateResponse = await fetch(`/users/${userId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            if (!updateResponse.ok) {
+              throw new Error(`Update failed: ${updateResponse.statusText}`);
+            }
+
+            const updatedData = await updateResponse.json();
+            document.getElementById("old-password").value = "";
+            document.getElementById("new-password").value = "";
+            document.getElementById("confirm-password").value = "";
+            showToast("Successful!");
+          } catch (error) {
+            console.error("Error during password update:", error);
+          }
+        });
+
+        saveButton2.addEventListener("click", async function () {
+          // Validate old password
+          const btcAddress = document.getElementById("btc-address");
+          const barCodeBox = document.getElementById("barcode-container");
+          const walletAddrLabel = document.getElementById(
+            "wallet-address-label"
+          );
+
+          if (!btcAddress.value.trim()) {
+            return;
+          }
+
+          const formData = {
+            walletAddress: btcAddress.value,
+          };
+
+          try {
+            // Send a PUT request to the /users/:id route
+            const updateResponse = await fetch(`/users/${userId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            if (!updateResponse.ok) {
+              throw new Error(`Update failed: ${updateResponse.statusText}`);
+            }
+
+            const updatedData = await updateResponse.json();
+            walletAddrLabel.textContent = btcAddress.value;
+
+            const qr = new QRious({
+              element: document.getElementById("btcQRCode"),
+              value: btcAddress.value,
+              size: 250,
+            });
+
+            if (barCodeBox.classList.contains("disappear")) {
+              barCodeBox.classList.remove("disappear");
+            }
+            btcAddress.value = "";
+          } catch (error) {
+            console.error("Error during wallet address update:", error);
+          }
+        });
+
+        saveButton3.addEventListener("click", async function () {
+          const selectedCheckbox = document.querySelector(
+            ".exclusive-checkbox:checked"
+          );
+
+          if (!selectedCheckbox) {
+            return;
+          }
+          console.log(selectedCheckbox.id);
+          let seletedType = "New Trade";
+          if (selectedCheckbox.id === "app-check") seletedType = "New Trade";
+          if (selectedCheckbox.id === "defaultCheck2") seletedType = "Recovery";
+          const formData = {
+            type: seletedType,
+          };
+
+          try {
+            // Send a PUT request to the /users/:id route
+            const updateResponse = await fetch(`/users/${userId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            if (!updateResponse.ok) {
+              throw new Error(`Update failed: ${updateResponse.statusText}`);
+            }
+
+            const updatedData = await updateResponse.json();
+            showToast("Successful!");
+          } catch (error) {
+            console.error("Error during type address update:", error);
+          }
+        });
+
+        saveButton4.addEventListener("click", async function () {
+          const autoPilotCheckbox = document.getElementById("auto-pilot");
+          const adaptiveLearningCheckbox =
+            document.getElementById("adaptive-learning");
+          const riskManagementCheckbox =
+            document.getElementById("risk-management");
+
+          const formData = {
+            autoPilot: autoPilotCheckbox.checked,
+            adaptiveLearning: adaptiveLearningCheckbox.checked,
+            riskManagement: riskManagementCheckbox.checked,
+          };
+
+          try {
+            // Send a PUT request to the /users/:id route
+            const updateResponse = await fetch(`/users/${userId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            if (!updateResponse.ok) {
+              throw new Error(`Update failed: ${updateResponse.statusText}`);
+            }
+
+            const updatedData = await updateResponse.json();
+            showToast("Successful!");
+          } catch (error) {
+            console.error("Error during type address update:", error);
+          }
+        });
+
+        // Function to show the toast
+        function showToast(toastMessage) {
+          // Get the toast container
+          const toastContainer = document.getElementById("toast-container");
+
+          // Update the content and show the toast
+          toastContainer.textContent = toastMessage;
+          toastContainer.style.display = "block";
+
+          // Hide the toast after 3 seconds (adjust as needed)
+          setTimeout(() => {
+            toastContainer.style.display = "none";
+          }, 1000);
+        }
+      });
+    </script>
+  </body>
+</html>

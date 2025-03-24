@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptocito | Cosmos ⚛️</title>
+    <link rel="stylesheet" href="/assets/css/user-profile.css" />
+
+    <!-- ICONS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/admin/assets/images/logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/admin/assets/images/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/admin/assets/images/logo/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div class="main-content">
+      <nav
+        class="navbar navbar-top navbar-expand-md navbar-dark"
+        id="navbar-main"
+      >
+        <div class="container-fluid">
+          <!-- Brand -->
+
+          <div style="display: flex">
+            <img
+              style="margin-right: 4px"
+              class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+              src="/assets/images/cosmos-globe.png"
+              alt="logo"
+              width="25"
+              height="25"
+            />
+
+            <span class="h4 mb-0 text-white d-none d-lg-inline-block"
+              >Cosmos</span
+            >
+          </div>
+          <!-- Form -->
+
+          <!-- User -->
+          <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <li class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link pr-0"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div class="media align-items-center">
+                  <span class="avatar avatar-sm rounded-circle">
+                    <img
+                      alt="Image placeholder"
+                      src="<%= data.user.profilePic %>"
+                    />
+                  </span>
+                  <div class="media-body ml-2 d-none d-lg-block">
+                    <span class="mb-0 text-sm font-weight-bold"
+                      ><%= data.user.fullname %></span
+                    >
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div
+        class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+        style="
+          min-height: 200px;
+          background-image: url();
+          background-size: cover;
+          background-position: center top;
+        "
+      >
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+          <div class="row">
+            <div class="col-lg-7 col-md-10">
+              <h1 class="display-2 gradient-text"><%= data.user.fullname %></h1>
+              <p class="text-white mt-0 mb-5"><%= data.user.note %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page content -->
+      <div class="container-fluid mt--7">
+        <div class="row">
+          <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile">
+              <div class="row justify-content-center">
+                <div class="col-lg-3 order-lg-2">
+                  <div class="card-profile-image">
+                    <a href="#">
+                      <img
+                        src="<%= data.user.profilePic %>"
+                        class="rounded-circle"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
+              ></div>
+              <div class="card-body pt-0 pt-md-4">
+                <div class="row">
+                  <div class="col">
+                    <div
+                      class="card-profile-stats d-flex justify-content-center mt-md-5"
+                    >
+                      <div>
+                        <span class="heading"><%= data.user.profit %></span>
+                        <span class="description">Profit</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= data.user.capital %></span>
+                        <span class="description">Capital</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= data.user.bonus %></span>
+                        <span class="description">Bonus</span>
+                      </div>
+                      <div>
+                        <span class="heading"
+                          ><%= data.user.totalRevenue %></span
+                        >
+                        <span class="description">Revenue</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h3>Contact details</h3>
+                  <div style="display: flex; justify-content: space-around">
+                    <div class="h5 con-det font-weight-300">
+                      <i class="ni location_pin mr-2"></i><%= data.user.phone %>
+                    </div>
+                    <div class="h5 con-det font-weight-300">
+                      <i class="ni location_pin mr-2"></i><%= data.user.country
+                      %>
+                    </div>
+                    <div class="h5 con-det font-weight-300">
+                      <i class="ni location_pin mr-2"></i><%= data.user.email %>
+                    </div>
+                  </div>
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Signal type
+                  </div>
+                  <div style="color: #b238b1" class="text-uppercase">
+                    <i class="ni education_hat mr-2 text-uppercase"></i><%=
+                    data.user.signals %>
+                  </div>
+                  <hr class="my-4" />
+                  <div style="text-align: left">
+                    <p>Trade plan — <b><%= data.user.plan %></b></p>
+                    <p>
+                      Trade status —
+                      <b
+                        ><%= data.user.tradeStatus.charAt(0).toUpperCase() +
+                        data.user.tradeStatus.slice(1) %></b
+                      >
+                    </p>
+                  </div>
+                  <a href="#" onclick="goBack()">Dashboard</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary">
+              <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h3 class="mb-0">BTC-USD</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body-no-pad">
+                <div id="tradingview-widget-container"></div>
+
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src =
+                      "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+                    script.async = true;
+                    script.innerHTML = JSON.stringify({
+                      width: "100%",
+                      height: 500,
+                      symbol: "BITSTAMP:BTCUSD",
+                      interval: "D",
+                      timezone: "Etc/UTC",
+                      theme: "dark",
+                      style: "1",
+                      locale: "en",
+                      enable_publishing: false,
+                      allow_symbol_change: true,
+                      toolbar_bg: "#f1f3f6",
+                      withdateranges: true,
+                      show_popup_button: false,
+                      support_host: "https://www.tradingview.com",
+                    });
+
+                    document
+                      .getElementById("tradingview-widget-container")
+                      .appendChild(script);
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6 m-auto text-center">
+          <div class="copyright">
+            <p>Cryptocito&copy; next generation trading..</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+    </script>
+    <script
+      src="//code.tidio.co/wiapprxq69ufgfh6dhowggtahvueran9.js"
+      async
+    ></script>
+  </body>
+</html>

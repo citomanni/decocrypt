@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A smarter investment experience for a simpler life."
+    />
+
+    <!-- ICONS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/admin/assets/images/logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/admin/assets/images/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/admin/assets/images/logo/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- TYPOGRAPHY -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+    <!-- STYLES -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- SCRIPTS -->
+    <script defer src="./assets/js/script.js"></script>
+    <script src="https://cdn.socket.io/4.2.0/socket.io.min.js"></script>
+
+    <title>Cryptocito | Cosmos ⚛️</title>
+  </head>
+  <body>
+    <header style="background-color: #10072b" class="header">
+      <div style="display: flex; align-items: center">
+        <figure
+          style="display: flex; align-items: center"
+          class="header__logo"
+          style="margin-bottom: 10px"
+        >
+          <img
+            class=""
+            src="./assets/images/cosmos-logo.png"
+            alt="logo"
+            width="auto"
+            height="55"
+            style="margin-bottom: 5px"
+          />
+        </figure>
+        <a href="#">
+          <span
+            style="
+              margin-top: 10px;
+              margin-left: 5px;
+              font-family: 'Russo One', sans-serif;
+            "
+            class="header__logo"
+            >Cryptocito</span
+          >
+        </a>
+      </div>
+      <!-- NAVIGATION -->
+      <nav class="navigation">
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a href="#section-features" class="navigation__link">Features</a>
+          </li>
+          <li class="navigation__item">
+            <a href="#section-operations" class="navigation__link">Plans</a>
+          </li>
+          <li class="navigation__item">
+            <a href="#section-testimonial" class="navigation__link"
+              >Testimonials</a
+            >
+          </li>
+          <li class="navigation__item">
+            <a href="#" class="navigation__btn btn--open-modal">Open account</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- MOBILE MENU BUTTON -->
+      <button class="header__menu-btn">
+        <span class="header__menu-line"></span>
+      </button>
+    </header>
+    <!-- MAIN -->
+    <main class="main">
+      <!-- HERO SECTION -->
+      <section class="section-hero">
+        <div class="hero">
+          <div class="hero__img-box">
+            <img
+              src="./assets/images/cards-valr.webp"
+              alt="Cards"
+              class="hero__img"
+            />
+          </div>
+          <div class="hero__textbox">
+            <h1 class="heading-primary mb-sm">
+              Step into the <span>Cito Zone</span>
+            </h1>
+            <p class="hero__description mb-md">
+              Embark on a transformative journey harnessing the power of
+              AI-driven trading and latest web3 technology. Uncover innovative
+              opportunities and make informed decisions in the evolving world of
+              cryptocurrency.
+            </p>
+            <button class="btn btn--md btn--outline btn--open-login-modal">
+              Login
+              <svg class="btn__icon">
+                <use
+                  xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+                ></use>
+              </svg>
+            </button>
+            <a
+              href="https://www.youtube.com/channel/UCE1JHFSfUWcXVyzV3KGA9Fw"
+              target="_blank"
+              class="btn btn--normal btn--scroll-to"
+              >Learn more</a
+            >
+          </div>
+        </div>
+      </section>
+      <!-- FEATURES SECTION -->
+      <section class="section section--bg" id="section-features">
+        <div class="container">
+          <span class="subheading mb-xs">Features</span>
+          <h2 class="heading-secondary mb-xl">
+            Everything as simple as possible, but no simpler
+          </h2>
+        </div>
+        <div class="container">
+          <div class="feature">
+            <!-- FIRST COLUMN -->
+            <div class="feature__text-box">
+              <div class="feature__header mb-sm">
+                <div class="feature__icon">
+                  <svg>
+                    <use xlink:href="./assets/icons/sprite.svg#icon-tv"></use>
+                  </svg>
+                </div>
+                <div class="feature__title">100% self-trading guide</div>
+              </div>
+              <div class="feature__body mb-lg">
+                <p class="feature__description mb-sm">
+                  Discover the keys to financial independence as you learn
+                  strategic insights and expert tips, with detailed instructions
+                  on actionable steps tailored to each individual.
+                </p>
+                <ul class="list ml-md">
+                  <li class="list__item">
+                    <svg class="list__icon">
+                      <use
+                        xlink:href="./assets/icons/sprite.svg#icon-check"
+                      ></use>
+                    </svg>
+                    <span class="list__text"
+                      >Deposit your capital into your wallet</span
+                    >
+                  </li>
+                  <li class="list__item">
+                    <svg class="list__icon">
+                      <use
+                        xlink:href="./assets/icons/sprite.svg#icon-check"
+                      ></use>
+                    </svg>
+                    <span class="list__text">Activate your trade</span>
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="https://www.youtube.com/channel/UCE1JHFSfUWcXVyzV3KGA9Fw"
+                target="_blank"
+                class="btn btn--normal"
+              >
+                Learn more
+                <svg class="btn__icon">
+                  <use
+                    xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+                  ></use>
+                </svg>
+              </a>
+            </div>
+            <div class="feature__img-box">
+              <img
+                src="./assets/images/luno-img-lazy.jpg"
+                data-src="./assets/images/luno-img.png"
+                alt="self-trading"
+                class="feature__img feature__lazy-img"
+              />
+            </div>
+            <div class="feature__img-box">
+              <img
+                src="./assets/images/grow-new-lazy.jpg"
+                data-src="./assets/images/grow-new.jpeg"
+                alt="grow"
+                class="feature__img feature__lazy-img"
+              />
+            </div>
+            <div class="feature__text-box">
+              <div class="feature__header mb-sm">
+                <div class="feature__icon">
+                  <svg>
+                    <use
+                      xlink:href="./assets/icons/sprite.svg#icon-area-graph"
+                    ></use>
+                  </svg>
+                </div>
+                <div class="feature__title">Watch your money grow</div>
+              </div>
+              <div class="feature__body mb-lg">
+                <p class="feature__description mb-sm">
+                  Feel the satisfaction of seeing your wealth multiply through
+                  strategic decisions guided by cutting-edge AI trading. With
+                  the power of artificial intelligence, observe as your
+                  prosperity expands, paving the way for a secure and prosperous
+                  future.
+                </p>
+              </div>
+              <a
+                href="https://www.youtube.com/channel/UCE1JHFSfUWcXVyzV3KGA9Fw"
+                target="_blank"
+                class="btn btn--normal"
+              >
+                Learn more
+                <svg class="btn__icon">
+                  <use
+                    xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+                  ></use>
+                </svg>
+              </a>
+            </div>
+            <div class="feature__text-box">
+              <div class="feature__header mb-sm">
+                <div class="feature__icon">
+                  <svg>
+                    <use
+                      xlink:href="./assets/icons/sprite.svg#icon-credit-card"
+                    ></use>
+                  </svg>
+                </div>
+                <div class="feature__title">Free signals to all accounts</div>
+              </div>
+              <div class="feature__body mb-lg">
+                <p class="feature__description mb-sm">
+                  Access trading signals fortified by an advanced predictive
+                  algorithm, providing you with real-time insights and foresight
+                  into market movements. With precision and accuracy, our
+                  signals serve as a reliable guide, empowering you to navigate
+                  the complexities of the market with confidence.
+                </p>
+                <ul class="list ml-md">
+                  <li class="list__item">
+                    <svg class="list__icon">
+                      <use
+                        xlink:href="./assets/icons/sprite.svg#icon-check"
+                      ></use>
+                    </svg>
+                    <span class="list__text">100% secured</span>
+                  </li>
+                  <li class="list__item">
+                    <svg class="list__icon">
+                      <use
+                        xlink:href="./assets/icons/sprite.svg#icon-check"
+                      ></use>
+                    </svg>
+                    <span class="list__text">End-end encrypted</span>
+                  </li>
+                  <li class="list__item">
+                    <svg class="list__icon">
+                      <use
+                        xlink:href="./assets/icons/sprite.svg#icon-check"
+                      ></use>
+                    </svg>
+                    <span class="list__text">Bank and Wallet Withdrawal</span>
+                  </li>
+                </ul>
+              </div>
+              <a
+                href="https://www.youtube.com/channel/UCE1JHFSfUWcXVyzV3KGA9Fw"
+                target="_blank"
+                class="btn btn--normal"
+              >
+                Learn more
+                <svg class="btn__icon">
+                  <use
+                    xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+                  ></use>
+                </svg>
+              </a>
+            </div>
+            <div class="feature__img-box">
+              <img
+                src="./assets/images/short-term-lazy.jpg"
+                data-src="./assets/images/short-term.png"
+                alt="Digital"
+                class="feature__img feature__lazy-img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- PLANS SECTION -->
+      <section class="section" id="section-operations">
+        <div class="container">
+          <span class="subheading mb-xs">Plans</span>
+          <h2 class="heading-secondary mb-xl">
+            Browse our set of investment services and offerings.
+          </h2>
+        </div>
+        <div class="container">
+          <div class="operations">
+            <aside class="operations__img-container">
+              <figure class="operations__img-box">
+                <img
+                  src="./assets/images/starter-plan.jpeg"
+                  alt="Transfer money"
+                  class="operations__img operations__img--1 operations__img--active"
+                />
+              </figure>
+              <figure class="operations__img-box">
+                <img
+                  src="./assets/images/short-term-trade.jpeg"
+                  alt="Transfer money"
+                  class="operations__img operations__img--2"
+                />
+              </figure>
+              <figure class="operations__img-box">
+                <img
+                  src="./assets/images/long-term.webp"
+                  alt="Transfer money"
+                  class="operations__img operations__img--3"
+                />
+              </figure>
+            </aside>
+            <aside class="operations__list-container">
+              <div class="operations__accordion">
+                <h3
+                  class="operations__heading operations__heading--active"
+                  data-accordion="1"
+                >
+                  01 Starter Plan
+                </h3>
+                <div
+                  class="operations__content operations__content--1 operations__content--active"
+                >
+                  <p class="operations__subheading">
+                    Standard signals, instant withdrawal! No fees.
+                  </p>
+                  <p class="operations__description">
+                    Immerse yourself in a seamless trading experience where
+                    precision seamlessly combines with simplicity. The Starter
+                    Plan offers fundamental tools for hassle-free trading. Seize
+                    the opportunity.
+                  </p>
+                  <figure class="operations__inner-photo">
+                    <img
+                      src="./assets/images/starter-plan.jpeg"
+                      alt="Transfer money"
+                      class="operations__photo"
+                    />
+                  </figure>
+                </div>
+              </div>
+              <div class="operations__accordion">
+                <h3 class="operations__heading" data-accordion="2">
+                  02 Short Term Trade
+                </h3>
+                <div class="operations__content operations__content--2">
+                  <p class="operations__subheading">
+                    Medium level trade, earn monthly.
+                  </p>
+                  <p class="operations__description">
+                    Participate in Short Term Trades for monthly earnings. This
+                    plan offers a strategic approach to trading. Experience a
+                    refined trading atmosphere designed for consistent monthly
+                    gains.
+                  </p>
+                  <figure class="operations__inner-photo">
+                    <img
+                      src="./assets/images/short-term-trade.jpeg"
+                      alt="Transfer money"
+                      class="operations__photo"
+                    />
+                  </figure>
+                </div>
+              </div>
+              <div class="operations__accordion">
+                <h3 class="operations__heading" data-accordion="3">
+                  03 Long Term Investment
+                </h3>
+                <div class="operations__content operations__content--3">
+                  <p class="operations__subheading">
+                    Looking for something extra, try this plan.
+                  </p>
+                  <p class="operations__description">
+                    For those seeking more, delve into our Long-Term Investment
+                    plan. Unlock the potential for extended growth and
+                    substantial returns. Explore a strategic investment journey
+                    with the promise of long-term rewards.
+                  </p>
+                  <figure class="operations__inner-photo">
+                    <img
+                      src="./assets/images/long-term.webp"
+                      alt="Transfer money"
+                      class="operations__photo"
+                    />
+                  </figure>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+      <!-- TESTIMONIAL SECTION -->
+      <section class="section section--bg" id="section-testimonial">
+        <div class="container">
+          <span class="subheading mb-xs">Not sure yet?</span>
+          <h2 class="heading-secondary mb-lg">
+            Our investors are already making their lifes simpler.
+          </h2>
+        </div>
+        <div class="container">
+          <div class="slider">
+            <div class="slide">
+              <div class="testimonial">
+                <div class="testimonial__img">
+                  <img
+                    src="./assets/images/arthur.jpg"
+                    alt="Arthur Davidson"
+                    class="testimonial__photo"
+                  />
+                </div>
+                <div class="testimonial__info">
+                  <div class="testimonial__heading mb-sm">
+                    Best financial decision ever!
+                  </div>
+                  <blockquote class="testimonial__text mb-lg">
+                    Making the best financial decision of my life was a
+                    game-changer. It's transformed my financial landscape,
+                    providing stability and growth like never before. The
+                    decision to invest has been my key to a more secure and
+                    prosperous future.
+                  </blockquote>
+                  <address class="testimonial__author">
+                    <img
+                      src="./assets/images/arthur-small.jpeg"
+                      alt="Aarav Lynn"
+                      class="testimonial__photo-small"
+                    />
+                    <p class="testimonial__name">Arthur Davidson</p>
+                    <p class="testimonial__location">London, United Kingdom</p>
+                  </address>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="testimonial">
+                <div class="testimonial__img">
+                  <img
+                    src="./assets/images/user-4.png"
+                    alt="Ayomide Oreoluwa"
+                    class="testimonial__photo"
+                  />
+                </div>
+                <div class="testimonial__info">
+                  <div class="testimonial__heading mb-sm">
+                    A life changing discovery
+                  </div>
+                  <blockquote class="testimonial__text mb-lg">
+                    Investing with this platform has opened doors to financial
+                    opportunities I never imagined. The personalized guidance
+                    and cutting-edge tools have made navigating the market a
+                    breeze. It's not just an investment; it's a life-changing
+                    journey towards financial empowerment.
+                  </blockquote>
+                  <address class="testimonial__author">
+                    <img
+                      src="./assets/images/user-small-4.png"
+                      alt="Lisa Mumbi"
+                      class="testimonial__photo-small"
+                    />
+                    <p class="testimonial__name">Lisa Mumbi</p>
+                    <p class="testimonial__location">Nairobi, Kenya</p>
+                  </address>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="testimonial">
+                <div class="testimonial__img">
+                  <img
+                    src="./assets/images/matt.jpg"
+                    alt="Francisco Gomes"
+                    class="testimonial__photo"
+                  />
+                </div>
+                <div class="testimonial__info">
+                  <div class="testimonial__heading mb-sm">
+                    Transformed from a coffee retailer to a crypto mogul
+                  </div>
+                  <blockquote class="testimonial__text mb-lg">
+                    Joining this platform was the financial turning point I
+                    needed. The intuitive interface and expert insights have
+                    made investing a seamless experience. My portfolio's growth
+                    speaks volumes—I've found a trusted partner for financial
+                    success.
+                  </blockquote>
+                  <address class="testimonial__author">
+                    <img
+                      src="./assets/images/matt-small.jpeg"
+                      alt="Aarav Lynn"
+                      class="testimonial__photo-small"
+                    />
+                    <p class="testimonial__name">Matt Taylor</p>
+                    <p class="testimonial__location">New York City, USA</p>
+                  </address>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="testimonial">
+                <div class="testimonial__img">
+                  <img
+                    src="./assets/images/nomusa.jpg"
+                    alt="Palesa Stifiso"
+                    class="testimonial__photo"
+                  />
+                </div>
+                <div class="testimonial__info">
+                  <div class="testimonial__heading mb-sm">
+                    Finally a reliable platform
+                  </div>
+                  <blockquote class="testimonial__text mb-lg">
+                    Discovering this platform has been a financial revelation
+                    for me. The tools and resources have empowered me to learn
+                    about this investment. It's not just about financial gains;
+                    it's about the confidence and knowledge gained along this
+                    transformative journey.
+                  </blockquote>
+                  <address class="testimonial__author">
+                    <img
+                      src="./assets/images/nomusa-small.jpeg"
+                      alt="Palesa Stifiso"
+                      class="testimonial__photo-small"
+                    />
+                    <p class="testimonial__name">Nomusa Ndlovu</p>
+                    <p class="testimonial__location">
+                      Johannesburg, South Africa
+                    </p>
+                  </address>
+                </div>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="testimonial">
+                <div class="testimonial__img">
+                  <img
+                    src="./assets/images/sarah.jpg"
+                    alt="Miyah Miles"
+                    class="testimonial__photo"
+                  />
+                </div>
+                <div class="testimonial__info">
+                  <div class="testimonial__heading mb-sm">
+                    Finally free from old-school Airdrops
+                  </div>
+                  <blockquote class="testimonial__text mb-lg">
+                    Opting for this platform was the smartest financial move
+                    I've made. The swift support and assitance have allowed me
+                    to navigate the market with confidence. My returns have
+                    surpassed expectations, making this journey a testament to
+                    their commitment to financial excellence.
+                  </blockquote>
+                  <address class="testimonial__author">
+                    <img
+                      src="./assets/images/sarah-small.jpeg"
+                      alt="Aarav Lynn"
+                      class="testimonial__photo-small"
+                    />
+                    <p class="testimonial__name">Sarah O'Connor</p>
+                    <p class="testimonial__location">Sydney, Australia</p>
+                  </address>
+                </div>
+              </div>
+            </div>
+            <div class="slider__controls">
+              <button
+                class="slider__btn slider__btn--left"
+                aria-label="previous"
+              >
+                <svg class="slider__icon">
+                  <use
+                    xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-left"
+                  ></use>
+                </svg>
+              </button>
+              <button class="slider__btn slider__btn--right" aria-label="next">
+                <svg class="slider__icon">
+                  <use
+                    xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+                  ></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- CONTACT SECTION -->
+      <section class="section-signup" id="section-contact">
+        <div class="container-sm">
+          <span class="btn btn--normal subheading mb-xs btn--open-login-modal"
+            >Login</span
+          >
+          <h2 class="heading-secondary mb-lg">
+            The best day to start investing was a year ago. The second best is
+            today!
+          </h2>
+          <button class="btn btn--primary btn--lg btn--open-modal">
+            Open your free account today!
+          </button>
+        </div>
+      </section>
+    </main>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__wrapper">
+          <div class="footer__brand">
+            <div style="display: flex; align-items: center">
+              <figure
+                style="display: flex; align-items: center"
+                class="header__logo"
+                style="margin-bottom: 10px"
+              >
+                <img
+                  class=""
+                  src="./assets/images/crypto-cito-crop.png"
+                  alt="logo"
+                  width="auto"
+                  height="55"
+                  style="margin-bottom: 5px"
+                />
+              </figure>
+              <a href="#">
+                <span
+                  style="
+                    margin-top: 10px;
+                    margin-left: 5px;
+                    font-family: 'Russo One', sans-serif;
+                  "
+                  class="header__logo"
+                  >Cryptocito</span
+                >
+              </a>
+            </div>
+            <p class="footer__description mb-md">
+              Any cryptocurrency can go to zero 🎢 Enter the Cito Zone ⚛️
+            </p>
+            <ul class="footer__social">
+              <li>
+                <a
+                  href="https://www.facebook.com/LTFwithHarry.Yeh"
+                  target="_blank"
+                  class="footer__social-item"
+                  aria-label="Facebook"
+                >
+                  <svg class="footer__social-icon">
+                    <use
+                      xlink:href="./assets/icons/sprite.svg#icon-facebook"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="footer__social-item"
+                  aria-label="Instagram"
+                >
+                  <svg class="footer__social-icon">
+                    <use
+                      xlink:href="./assets/icons/sprite.svg#icon-instagram"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  target="_blank"
+                  class="footer__social-item"
+                  aria-label="Twitter"
+                >
+                  <svg class="footer__social-icon">
+                    <use
+                      xlink:href="./assets/icons/sprite.svg#icon-twitter"
+                    ></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer_column_wrapper">
+            <div class="footer__column">
+              <p class="footer__header mb-md">Legal</p>
+              <ul class="footer__list">
+                <li class="footer__item">
+                  <a href="#" class="footer__link">Terms of Use</a>
+                </li>
+                <li class="footer__item">
+                  <a href="#" class="footer__link">Privacy Policy</a>
+                </li>
+                <li class="footer__item">
+                  <a href="#" class="footer__link">Security</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer__column">
+              <p class="footer__header mb-md">About</p>
+              <ul class="footer__list">
+                <li class="footer__item">
+                  <a href="#" class="footer__link">Company</a>
+                </li>
+                <li class="footer__item">
+                  <a href="#" class="footer__link">Open Hours</a>
+                </li>
+                <li class="footer__item">
+                  <a href="#" class="footer__link">Staffs</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer__column">
+              <p class="footer__header mb-md">Resources</p>
+              <ul class="footer__list">
+                <li class="footer__item">
+                  <a
+                    href="https://www.cryptocompare.com"
+                    target="_blank"
+                    class="footer__link"
+                    >Currency Price</a
+                  >
+                </li>
+                <li class="footer__item">
+                  <a
+                    href="https://www.tradingview.com/chart/?symbol=BITSTAMP%3ABTCUSD"
+                    class="footer__link"
+                    >Live Chart</a
+                  >
+                </li>
+                <li class="footer__item">
+                  <a href="#" class="footer__link">Customer Support</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <p class="footer__copyright">
+            All rights reserved © 2024 Cryptocito. Your Gateway to Innovative
+            Trading.
+          </p>
+        </div>
+      </div>
+    </footer>
+    <!-- MODAL -->
+    <div class="modal hidden">
+      <div class="modal__header">
+        <div class="modal__heading">
+          <div style="display: flex; align-items: center">
+            <figure class="profile--avatar" style="margin-bottom: 10px">
+              <img
+                class=""
+                src="./assets/images/cosmos-globe.png"
+                alt="logo"
+                width="30"
+                height="30"
+                style="margin-bottom: 10px"
+              />
+            </figure>
+            <h2 style="margin-left: 3px" class="modal__title mb-xs">
+              Open account
+            </h2>
+          </div>
+          <!-- <p class="modal__subheading">
+            Open a new account to start an investment.
+          </p> -->
+        </div>
+        <button class="modal__close-btn btn--close-modal">
+          <svg class="modal__close-icon">
+            <use xlink:href="./assets/icons/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <form
+          action="/register"
+          method="POST"
+          class="modal__form register__form"
+        >
+          <div class="input__group">
+            <label for="fullname" class="input__label">Fullname</label>
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              class="input__form"
+              placeholder="Fullname"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="email" class="input__label">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="input__form"
+              placeholder="youremail@gmail.com"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="phone" class="input__label">Phone</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              class="input__form"
+              placeholder="+44 9876543215"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="country" class="input__label">Country</label>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              class="input__form"
+              placeholder="United Kingdom"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="password" class="input__label">Password</label>
+            <div
+              class="password__box input__form"
+              style="display: flex; justify-content: center"
+            >
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="input__password input__passwordSignup"
+                placeholder="Password"
+                style="flex-grow: 1"
+                required
+              />
+              <div
+                style="
+                  display: flex;
+                  justify-content: right;
+                  align-items: center;
+                "
+              >
+                <span
+                  class="togglePassword togglePasswordSignup"
+                  style="
+                    color: gray;
+                    margin-left: 3px;
+                    cursor: pointer;
+                    font-weight: 400;
+                  "
+                  >SHOW</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="input__form">
+            <legend>Type</legend>
+            <div class="trade__type">
+              <label class="btn--radio">
+                <input
+                  type="radio"
+                  name="type"
+                  value="New Trade"
+                  id="typeNew"
+                  required
+                  style="margin-right: 4px"
+                  checked
+                />
+                New Trade
+              </label>
+              <label class="btn--radio">
+                <input
+                  type="radio"
+                  name="type"
+                  value="Recovery"
+                  id="typeRecovery"
+                  required
+                  style="margin-right: 4px"
+                />
+                Recovery
+              </label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <p class="next__page">
+        <span
+          >Already have an account?
+          <a
+            class="next__page__link btn--close-register btn--open-login-modal"
+            href="#"
+            >LOGIN</a
+          ></span
+        >
+      </p>
+      <div class="modal__footer">
+        <button class="btn btn--normal btn--close-modal">Cancel</button>
+        <button class="btn btn--primary btn--register btn--sm">
+          Register
+          <svg class="btn__icon">
+            <use
+              xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+            ></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- LOGIN MODAL -->
+    <div class="login_modal modal hidden">
+      <div class="modal__header">
+        <div class="modal__heading">
+          <div style="display: flex; align-items: center">
+            <figure class="profile--avatar" style="margin-bottom: 10px">
+              <img
+                class=""
+                src="./assets/images/cosmos-globe.png"
+                alt="logo"
+                width="30"
+                height="30"
+                style="margin-bottom: 10px"
+              />
+            </figure>
+            <h2 style="margin-left: 3px" class="modal__title mb-xs">Login</h2>
+          </div>
+          <p style="margin-bottom: 1rem" class="modal__subheading">
+            Have an account? login and start trading or monitor your existing
+            trade.
+          </p>
+        </div>
+
+        <button class="modal__close-btn btn--close-login-modal">
+          <svg class="modal__close-icon">
+            <use xlink:href="./assets/icons/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <form action="/dashboard" method="POST" class="modal__form login__form">
+          <div class="input__group">
+            <label for="email" class="input__label">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="input__form login-email"
+              placeholder="email@example.com"
+              required
+            />
+          </div>
+          <div class="input__group">
+            <label for="lastName" class="input__label">Password</label>
+            <div
+              class="password__box input__form"
+              style="display: flex; justify-content: center"
+            >
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="input__password login-pass input__passwordLogin"
+                placeholder="Password"
+                style="flex-grow: 1"
+                required
+              />
+              <div
+                style="
+                  display: flex;
+                  justify-content: right;
+                  align-items: center;
+                "
+              >
+                <span
+                  class="togglePassword togglePasswordLogin"
+                  style="
+                    color: gray;
+                    margin-left: 3px;
+                    cursor: pointer;
+                    font-weight: 400;
+                  "
+                  >SHOW</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <label class="input__label"
+              ><span
+                class="btn btn--normal btn--close-login btn--open-forgot-password-modal"
+                >Forgot password?</span
+              ></label
+            >
+          </div>
+        </form>
+      </div>
+      <p class="next__page">
+        <span
+          >Don't have an account?
+          <a class="next__page__link btn--close-login btn--open-modal" href="#"
+            >REGISTER NOW</a
+          ></span
+        >
+      </p>
+      <div class="modal__footer">
+        <button class="btn btn--normal btn--close-login-modal">Cancel</button>
+        <button class="btn btn--primary btn--login btn--sm">
+          Login
+          <svg class="btn__icon">
+            <use
+              xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+            ></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="forgot_password_modal modal hidden">
+      <div class="modal__header">
+        <div class="modal__heading">
+          <div style="display: flex; align-items: center">
+            <figure class="profile--avatar" style="margin-bottom: 10px">
+              <img
+                class=""
+                src="./assets/images/Subject 3.jpeg"
+                alt="logo"
+                width="30"
+                height="30"
+                style="margin-bottom: 10px"
+              />
+            </figure>
+            <h2 style="margin-left: 3px" class="modal__title mb-xs">
+              Forgot Password
+            </h2>
+          </div>
+          <p class="modal__subheading">
+            Having trouble logging into your account? Enter your email address,
+            we’ll send you an email containing a recovery link.
+          </p>
+        </div>
+
+        <button class="modal__close-btn btn--close-forgot-password-modal">
+          <svg class="modal__close-icon">
+            <use xlink:href="./assets/icons/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <form class="modal__form">
+          <div class="input__group">
+            <label for="email" class="input__label">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="input__form"
+              placeholder="youremail@gmail.com"
+              required
+            />
+          </div>
+        </form>
+      </div>
+
+      <div class="modal__footer">
+        <button class="btn btn--normal btn--close-forgot-password-modal">
+          Cancel
+        </button>
+        <button class="btn btn--primary btn--sm">
+          Send Email
+          <svg class="btn__icon">
+            <use
+              xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+            ></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
+    <script
+      src="//code.tidio.co/wiapprxq69ufgfh6dhowggtahvueran9.js"
+      async
+    ></script>
+  </body>
+</html>

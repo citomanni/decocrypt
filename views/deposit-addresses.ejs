@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/admin/assets/css/main/addresses.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,100&family=Russo+One&family=Titillium+Web:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ICONS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/admin/assets/images/logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/admin/assets/images/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/admin/assets/images/logo/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+
+    <title>Cryptocito | Cosmos ⚛️</title>
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Deposit Addresses</h1>
+    </header>
+
+    <main class="content">
+      <section class="deposit-form">
+        <form id="depositForm">
+          <label style="color: #252e42" for="cryptoSelect"
+            >Select Cryptocurrency:</label
+          >
+          <select style="color: #b238b1" id="cryptoSelect" name="crypto">
+            <option value="Bitcoin">Bitcoin</option>
+            <option value="Ethereum">Ethereum</option>
+            <option value="Tether">Tether USDT</option>
+          </select>
+          <label style="color: #252e42" for="addressInput"
+            >Enter Address:</label
+          >
+          <input
+            type="text"
+            id="addressInput"
+            name="address"
+            placeholder="Paste your address here"
+          />
+          <button type="button" onclick="submitAddress()">Submit</button>
+        </form>
+      </section>
+
+      <section class="address-cards" id="addressCards">
+        <div class="card" data-crypto="Bitcoin">
+          <div style="display: flex; align-items: center; gap: 3px">
+            <img
+              src="/funding/images/BTC-icon.png"
+              width="35"
+              height="35"
+              alt=""
+              class="main--logo"
+              style="border-radius: 50%"
+            />
+            <h3 class="coin">Bitcoin</h3>
+          </div>
+          <p class="coin-addr"><%= data.address.Bitcoin %></p>
+        </div>
+        <div class="card" data-crypto="Ethereum">
+          <div style="display: flex; align-items: center; gap: 3px">
+            <img
+              src="/funding/images/ETH-icon.png"
+              width="35"
+              height="35"
+              alt=""
+              class="main--logo"
+              style="border-radius: 50%"
+            />
+            <h3 class="coin">Ethereum</h3>
+          </div>
+          <p class="coin-addr"><%= data.address.Ethereum %></p>
+        </div>
+        <div class="card" data-crypto="Tether">
+          <div style="display: flex; align-items: center; gap: 3px">
+            <img
+              src="/funding/images/usdt-cito.jpeg"
+              width="35"
+              height="35"
+              alt=""
+              class="main--logo"
+              style="border-radius: 50%"
+            />
+            <h3 class="coin">Tether</h3>
+          </div>
+          <p class="coin-addr"><%= data.address.Tether %></p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/admin/assets/js/addresses.js"></script>
+  </body>
+</html>

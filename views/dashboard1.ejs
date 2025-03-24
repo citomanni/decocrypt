@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptocito | Cosmos ⚛️</title>
+
+    <link rel="stylesheet" href="mezer/assets/css/main/app1.css" />
+    <link rel="stylesheet" href="mezer/assets/css/main/app-dark1.css" />
+    <!-- ICONS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="admin/assets/images/logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="admin/assets/images/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="admin/assets/images/logo/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="admin/assets/images/logo/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="stylesheet" href="mezer/assets/css/shared/iconly.css" />
+
+    <link
+      rel="stylesheet"
+      href="main/plugins/fontawesome/css/font-awesome1.css"
+      <link
+      rel="stylesheet"
+      href="main/plugins/animo/animate%2banimo.css"
+    />
+
+    <link rel="stylesheet" href="main/plugins/csspinner/csspinner.min.css" />
+    <link rel="stylesheet" href="main/app/css/app.css" />
+    <!--this code needs editing-->
+    <script src="main/plugins/modernizr/modernizr.js"></script>
+    <script src="main/plugins/fastclick/fastclick.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div id="main" class="layout-horizontal">
+        <header class="mb-5">
+          <div class="header-top">
+            <div class="container">
+              <div style="display: flex; align-items: center">
+                <!-- TOGGLE THEME STARTS-->
+
+                <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
+                  <div style="display: flex; align-items: center">
+                    <figure
+                      style="display: flex; align-items: center"
+                      class="header__logo"
+                      style="margin-bottom: 10px"
+                    >
+                      <img
+                        class=""
+                        src="./assets/images/crypto-cito-crop.png"
+                        alt="logo"
+                        width="auto"
+                        height="55"
+                        style="margin-bottom: 5px"
+                      />
+                    </figure>
+                  </div>
+                  <!-- <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    role="img"
+                    class="iconify iconify--system-uicons"
+                    width="20"
+                    height="20"
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 21 21"
+                  >
+                    <g
+                      fill="none"
+                      fill-rule="evenodd"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219 0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414 1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5 19.5v-2m0-14v-2"
+                        opacity=".3"
+                      ></path>
+                      <g transform="translate(-210 -1)">
+                        <path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
+                        <circle cx="220.5" cy="11.5" r="4"></circle>
+                        <path
+                          d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2"
+                        ></path>
+                      </g>
+                    </g>
+                  </svg> -->
+                  <div class="form-check form-switch fs-6">
+                    <input
+                      class="form-check-input me-0"
+                      type="checkbox"
+                      id="toggle-dark"
+                      style="cursor: pointer"
+                    />
+                    <label class="form-check-label"></label>
+                  </div>
+                  <!-- <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    aria-hidden="true"
+                    role="img"
+                    class="iconify iconify--mdi"
+                    width="20"
+                    height="20"
+                    preserveAspectRatio="xMidYMid meet"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63 1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06 3l3.19.09m3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7 1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95l2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76 1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31 10.98c3.02 3.01 7.84 3.12 10.98.31Z"
+                    ></path>
+                  </svg> -->
+                </div>
+              </div>
+
+              <!-- TOGGLE THEME ENDS -->
+              <div class="header-top-right">
+                <div class="dropdown">
+                  <a
+                    href="#"
+                    id="topbarUserDropdown"
+                    class="user-dropdown d-flex align-items-center dropend dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar avatar-md2">
+                      <img src="<%= data.user.profilePic %>" alt="Avatar" />
+                    </div>
+                    <div class="text">
+                      <h6 class="user-dropdown-name">
+                        <%= data.user.fullname %>
+                      </h6>
+                      <p class="user-dropdown-status text-sm text-muted">
+                        @<%= data.user.username %>
+                      </p>
+                    </div>
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end shadow-lg"
+                    aria-labelledby="topbarUserDropdown"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="/users/<%= data.user._id %>/profile"
+                        >My Account</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/users/<%= data.user._id %>/settings"
+                        >Settings</a
+                      >
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li>
+                      <a class="dropdown-item" href="/">Logout</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Burger button responsive -->
+                <a href="#" class="burger-btn d-block d-xl-none">
+                  <i class="bi bi-justify fs-3"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <nav class="main-navbar">
+            <div class="container">
+              <ul>
+                <li class="menu-item">
+                  <span class="menu-link">
+                    <span><i class="bi bi-grid-fill"></i> Dashboard</span></span
+                  >
+                </li>
+
+                <li class="menu-item active">
+                  <a href="/users/<%= data.user._id %>/deposit" class="menu-link">
+                    <span><i class="bi bi-plus-square-fill"></i> Deposit</span>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a href="/users/<%= data.user._id %>/withdrawal" class="menu-link">
+                    <span><i class="bi bi-grid-1x2-fill"></i> Withdrawal</span>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a href="#todays-trades" class="menu-link">
+                    <span><i class="bi bi-table"></i> Trending</span>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a href="#currency-prices" class="menu-link">
+                    <span><i class="bi bi-stack"></i> Currency Price</span>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a href="#coin-status" class="menu-link">
+                    <span
+                      ><i class="bi bi-graph-up-arrow"></i> Today's Trade</span
+                    >
+                  </a>
+                </li>
+
+                <li class="menu-item has-sub">
+                  <a href="#" class="menu-link">
+                    <span
+                      ><i class="bi bi-capslock-fill"></i> Plan Upgrade</span
+                    >
+                  </a>
+                  <div class="submenu">
+                    <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
+                    <div class="submenu-group-wrapper">
+                      <ul class="submenu-group">
+                        <li class="submenu-item">
+                          <a href="#" class="submenu-link">Starter Plan</a>
+                        </li>
+
+                        <li class="submenu-item">
+                          <a href="#" class="submenu-link">Short Term Trade</a>
+                        </li>
+
+                        <li class="submenu-item">
+                          <a href="#" class="submenu-link">Long Term Trade</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="menu-item chat-button">
+                  <a href="#" class="menu-link">
+                    <span><i class="bi bi-chat-fill"></i> Support</span>
+                  </a>
+                </li>
+                <script>
+                  (function() {
+                    function onTidioChatApiReady() {
+                      window.tidioChatApi.hide();
+                    }
+                    
+                    if (window.tidioChatApi) {
+                      window.tidioChatApi.on("ready", onTidioChatApiReady);
+                    }
+                    
+                    document.querySelector(".chat-button").addEventListener("click", function() {
+                      window.tidioChatApi.show();
+                      window.tidioChatApi.open();
+                    });
+                  })();
+                </script>
+              </ul>
+            </div>
+          </nav>
+        </header>
+
+        <div class="content-wrapper container">
+          <div class="page-heading">
+            <h3>Profit  Highlights</h3>
+          </div>
+          <div class="page-content">
+            <section class="row">
+              <div class="col-12 col-lg-9">
+                <div class="row">
+                  <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                      <div class="card-body px-4 py-4-5">
+                        <div class="row">
+                          <div
+                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start"
+                          >
+                            <div class="stats-icon purple mb-2">
+                              <i class="iconly-boldWallet"></i>
+                            </div>
+                          </div>
+                          <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                            <h6 class="text-muted font-semibold">
+                              Current Profit
+                            </h6>
+                            <h6 class="font-extrabold mb-0">$<%= data.user.profit %></h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                      <div class="card-body px-4 py-4-5">
+                        <div class="row">
+                          <div
+                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start"
+                          >
+                            <div class="stats-icon blue mb-2">
+                              <i class="iconly-boldTick-Square"></i>
+                            </div>
+                          </div>
+                          <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                            <h6 class="text-muted font-semibold">Capital</h6>
+                            <h6 class="font-extrabold mb-0">$<%= data.user.capital %></h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                      <div class="card-body px-4 py-4-5">
+                        <div class="row">
+                          <div
+                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start"
+                          >
+                            <div class="stats-icon green mb-2">
+                              <i class="iconly-boldPlus"></i>
+                            </div>
+                          </div>
+                          <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                            <h6 class="text-muted font-semibold">Bonus</h6>
+                            <h6 class="font-extrabold mb-0">$<%= data.user.bonus %></h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                      <div class="card-body px-4 py-4-5">
+                        <div class="row">
+                          <div
+                            class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start"
+                          >
+                            <div class="stats-icon red mb-2">
+                              <i class="iconly-boldBag"></i>
+                            </div>
+                          </div>
+                          <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                            <h6 class="text-muted font-semibold">
+                              Total Revenue
+                            </h6>
+                            <h6 class="font-extrabold mb-0">$<%= data.user.totalRevenue %></h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>BTC-USD</h4>
+                      </div>
+                      <div class="card-body-no-pad">
+                        <div id="tradingview-widget-container"></div>
+
+                <script>
+                  document.addEventListener("DOMContentLoaded", function () {
+                    var script = document.createElement("script");
+                    script.type = "text/javascript";
+                    script.src =
+                      "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+                    script.async = true;
+                    script.innerHTML = JSON.stringify({
+                      width: "100%",
+                      height: 500,
+                      symbol: "BITSTAMP:BTCUSD",
+                      interval: "D",
+                      timezone: "Etc/UTC",
+                      theme: "dark",
+                      style: "1",
+                      locale: "en",
+                      enable_publishing: false,
+                      allow_symbol_change: true,
+                      toolbar_bg: "#f1f3f6",
+                      withdateranges: true,
+                      show_popup_button: false,
+                      support_host: "https://www.tradingview.com",
+                    });
+
+                    document
+                      .getElementById("tradingview-widget-container")
+                      .appendChild(script);
+                  });
+                </script>
+                        <!-- <div id="candlestickChart" class="h-500"></div> -->
+                        <!--<div id="chart-profile-visit"></div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" id="currency-prices">
+                  <div class="col-12 col-xl-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>Currency Prices</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="d-flex align-items-center">
+                              <svg
+                                class="bi text-primary"
+                                width="32"
+                                height="32"
+                                fill="blue"
+                                style="width: 10px"
+                              >
+                                <use
+                                  xlink:href="assets/images/bootstrap-icons.svg#circle-fill"
+                                />
+                              </svg>
+                              <h5 class="mb-0 ms-3">Bitcoin</h5>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <h5 class="mb-0 bitcoin">862</h5>
+                          </div>
+                          <div class="col-12">
+                            <div id="chart-europe"></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="d-flex align-items-center">
+                              <svg
+                                class="bi text-success"
+                                width="32"
+                                height="32"
+                                fill="blue"
+                                style="width: 10px"
+                              >
+                                <use
+                                  xlink:href="assets/images/bootstrap-icons.svg#circle-fill"
+                                />
+                              </svg>
+                              <h5 class="mb-0 ms-3">Ethereum</h5>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <h5 class="mb-0 ethereum">375</h5>
+                          </div>
+                          <div class="col-12">
+                            <div id="chart-america"></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="d-flex align-items-center">
+                              <svg
+                                class="bi text-danger"
+                                width="32"
+                                height="32"
+                                fill="blue"
+                                style="width: 10px"
+                              >
+                                <use
+                                  xlink:href="assets/images/bootstrap-icons.svg#circle-fill"
+                                />
+                              </svg>
+                              <h5 class="mb-0 ms-3">Litecoin</h5>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <h5 class="mb-0 litecoin">1025</h5>
+                          </div>
+                          <div class="col-12">
+                            <div id="chart-indonesia"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-xl-8" id="todays-trades">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4>Trending Updates</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-hover table-lg">
+                            <!-- <thead>
+                              <tr>
+                                <th>Name</th>
+                                <th>Comment</th>
+                              </tr>
+                            </thead> -->
+                            <tbody>
+                              <tr class="news-row-1">
+                                <!-- <td class="col-3">
+                                  <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-md">
+                                      <img
+                                        src="assets/images/default-user.jpeg"
+                                      />
+                                    </div>
+                                    <p class="font-bold ms-3 mb-0">Fred</p>
+                                  </div>
+                                </td> -->
+                                <td class="col-3" style="padding: 0;">
+                                  <img class="news-img-01" src="assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
+                                </td>
+                                <td class="col-auto">
+                                  <p class="mb-0 news-01">
+                                    Chinese Labs Are Selling Fentanyl Ingredients for Millions in Crypto
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr class="news-row-2">
+                                <td class="col-3" style="padding: 0;">
+                                  <img class="news-img-02" src="assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
+                                </td>
+                                <td class="col-auto">
+                                  <p class="mb-0 news-02">
+                                    9 Years After the Mt. Gox Hack, Feds Indict Alleged Culprits
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr class="news-row-3">
+                                <td class="col-3" style="padding: 0;">
+                                  <img class="news-img-03" src="assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
+                                </td>
+                                <td class="col-auto">
+                                  <p class="mb-0 news-03">
+                                    Coinbase and Binance Lawsuits Put Crypto on Ice
+                                  </p>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-3">
+                <div class="card">
+                  <div class="card-body py-4 px-5">
+                    <div class="d-flex align-items-center">
+                      <div class="avatar avatar-xl">
+                        <img
+                          src="<%= data.user.profilePic %>"
+                          alt="Face 1"
+                        />
+                      </div>
+                      <div class="ms-3 name">
+                        <h5 class="font-bold"><%= data.user.fullname %></h5>
+                        <h6 class="text-muted mb-0"><%= data.user.tradeStatus.charAt(0).toUpperCase() +
+                          data.user.tradeStatus.slice(1) %></h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card" id="customer-reps">
+                  <div class="card-header">
+                    <h4>Plan Overview</h4>
+                  </div>
+                  <div class="card-content pb-4">
+                    <div class="recent-message d-flex px-4 py-3">
+                      <div class="avatar avatar-lg">
+                        <img src="mezer/assets/images/faces/4.jpg" />
+                      </div>
+                      <div class="name ms-4">
+                        <h5 class="mb-1"><%= data.user.plan %></h5>
+                        <h6 class="text-muted mb-0">trade plan</h6>
+                      </div>
+                    </div>
+                    <div class="recent-message d-flex px-4 py-3">
+                      <div class="avatar avatar-lg">
+                        <img src="mezer/assets/images/faces/5.jpg" />
+                      </div>
+                      <div class="name ms-4">
+                        <h5 class="mb-1"><%= data.user.type %></h5>
+                        <h6 class="text-muted mb-0">type of trade</h6>
+                      </div>
+                    </div>
+                    <div class="recent-message d-flex px-4 py-3">
+                      <div class="avatar avatar-lg">
+                        <img src="mezer/assets/images/faces/1.jpg" />
+                      </div>
+                      <div class="name ms-4">
+                        <h5 class="mb-1"><%= data.user.signals %></h5>
+                        <h6 class="text-muted mb-0">signals type</h6>
+                      </div>
+                    </div>
+                    <div class="px-4">
+                      <p style="border: 1px dashed #ccc; border-radius: 8px; padding: 10px;"><b>NB📌</b> - <%= data.user.note %></p>
+                    </div>
+                    
+                    
+                    <!-- <div class="px-4">
+                      <p>Note - <%= data.user.note %></p>
+                      <!-- <button
+                        class="btn btn-block btn-xl btn-light-primary font-bold mt-3"
+                      >
+                        Start Conversation
+                      </button> 
+                    </div> -->
+                  </div>
+                </div>
+                <div class="card" id="coin-status">
+                  <div class="card-header">
+                    <h4>Live Trade</h4>
+                  </div>
+                  <div class="card-body">
+                    <!--<div id="chart-visitors-profile"></div>-->
+                    <div class="panel-default">
+                      <div class="list-group">
+                        <div class="list-group-item">
+                          <div class="media">
+                            <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <em
+                                  class="fa fa-circle fa-stack-2x text-green"
+                                ></em>
+                                <em
+                                  class="fa fa-level-up fa-stack-1x fa-inverse text-white"
+                                ></em>
+                              </span>
+                            </div>
+                            <div class="media-body clearfix">
+                              <strong>Last Price</strong>
+                              <p class="m0">
+                                <small class="text-green lst-price-usd"
+                                  >$0.02 <i class="fa fa-money"></i
+                                ></small>
+                              </p>
+                              <p>
+                                <i class="fa fa-btc"></i>
+                                <span class="lst-price-btc">0.00000286</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="list-group-item">
+                          <div class="media">
+                            <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <em
+                                  class="fa fa-circle fa-stack-2x text-green"
+                                ></em>
+                                <em
+                                  class="fa fa-level-up fa-stack-1x fa-inverse text-white"
+                                ></em>
+                              </span>
+                            </div>
+                            <div class="media-body clearfix">
+                              <strong>24Hr Change</strong>
+                              <p class="m0">
+                                <small class="text-green change-24h">+1.35%</small>
+                              </p>
+                              <p>
+                                <i class="fa fa-plus"></i> Gainer
+                                <i class="fa fa-level-up text-green"></i>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="list-group-item">
+                          <div class="media">
+                            <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <em
+                                  class="fa fa-circle fa-stack-2x text-danger"
+                                ></em>
+                                <em
+                                  class="fa fa-level-down fa-stack-1x fa-inverse text-white"
+                                ></em>
+                              </span>
+                            </div>
+                            <div class="media-body clearfix">
+                              <strong>24Hr Low</strong>
+                              <p class="m0">
+                                <small class="text-danger low-price-usd">$0.02</small>
+                              </p>
+                              <p>
+                                <i class="fa fa-btc"></i> <span class="low-price-btc">0.00000261</span>
+                                <i class="fa fa-level-down text-danger"></i>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="list-group-item">
+                          <div class="media">
+                            <div class="pull-left">
+                              <span class="fa-stack fa-lg">
+                                <em
+                                  class="fa fa-circle fa-stack-2x text-green"
+                                ></em>
+                                <em
+                                  class="fa fa-level-up fa-stack-1x fa-inverse text-white"
+                                ></em>
+                              </span>
+                            </div>
+                            <div class="media-body clearfix">
+                              <strong>24Hr High</strong>
+                              <p class="m0">
+                                <small class="text-green high-price-usd">$0.02</small>
+                              </p>
+                              <p>
+                                <i class="fa fa-btc"></i> </i> <span class="high-price-btc">0.00000375</span>
+                                <i class="fa fa-level-up text-green"></i>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Coin Status Ends Here -->
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <footer>
+          <div class="container">
+            <div class="footer clearfix mb-0 text-muted" style="display: flex; justify-content: center; gap: 1rem;">
+              <div class="float-start">
+                <p>Cryptocito&copy;</p>
+              </div>
+              <div >
+                <p>
+                  <span class="text-danger"><i class="bi bi-heart"></i></span>
+                  next generation trading..
+                </p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="mezer/assets/js/bootstrap.js"></script>
+    <script src="mezer/assets/js/app.js"></script>
+    <script src="mezer/assets/js/pages/horizontal-layout.js"></script>
+
+    <script src="mezer/assets/extensions/apexcharts/apexcharts.min.js"></script>
+    <script src="mezer/assets/js/pages/dashboard.js"></script>
+
+    <!-- <script src="main/plugins/jquery/jquery.js"></script>
+    <script src="main/plugins/velocity/velocity.js"></script>
+    <script src="main/plugins/velocity/velocity.ui.js"></script>
+    <script src="main/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="main/plugins/chosen/chosen.jquery.js"></script>
+    <script src="main/plugins/slider/js/bootstrap-slider.js"></script>
+    <script src="main/plugins/filestyle/bootstrap-filestyle.js"></script>
+    <script src="main/plugins/animo/animo.js"></script>
+    <script src="main/plugins/sparklines/jquery.sparkline.js"></script>
+    <script src="main/plugins/slimscroll/jquery.slimscroll.js"></script>
+    <script src="main/plugins/datatable/media/js/jquery.dataTables.js"></script>
+    <script src="main/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="main/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrapPagination.js"></script>
+    <script src="main/tradify/highcharts.js"></script>
+    <script src="main/tradify/exporting.js"></script> -->
+
+    <!-- <script>
+      $(document).ready(function () {
+        // Candlestick
+        $.getJSON('main/tradify/data.json', function (data) {
+          // create the chart
+          Highcharts.stockChart('candlestickChart', {
+            chart: {},
+
+            rangeSelector: {
+              selected: 1,
+            },
+
+            series: [
+              {
+                type: 'candlestick',
+                name: 'SC-BTC',
+                data: data,
+                dataGrouping: {
+                  units: [
+                    [
+                      'week', // unit name
+                      [1], // allowed multiples
+                    ],
+                    ['month', [1, 2, 3, 4, 6]],
+                  ],
+                },
+              },
+            ],
+          });
+        });
+      });
+    </script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="mezer/assets/js/script.js"></script>
+    <script src="//code.tidio.co/wiapprxq69ufgfh6dhowggtahvueran9.js" async></script>
+  </body>
+</html>

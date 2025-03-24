@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/admin/assets/images/logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/admin/assets/images/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/admin/assets/images/logo/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="stylesheet" href="/funding/css/style copy.css" />
+
+    <script defer src="/funding/js/app.js"></script>
+
+    <title>Cryptocito | Cosmos ⚛️</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div id="goback">
+        <span
+          ><i
+            style="font-size: 22px; color: #3c5df1"
+            class="bi bi-chevron-left"
+          ></i
+        ></span>
+      </div>
+      <script>
+        document
+          .getElementById("goback")
+          .addEventListener("click", function () {
+            window.history.back();
+          });
+      </script>
+      <div style="display: flex; align-items: center">
+        <h2 class="header__logo mb-sm gradient-text">Cryptocito</h2>
+        <img
+          style="margin-right: 4px"
+          class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+          src="/assets/images/cosmos-globe.png"
+          alt="logo"
+          width="25"
+          height="25"
+        />
+      </div>
+      <ul style="display: none" class="navbar__items">
+        <li class="navbar__items--1">
+          <a href="#" class="nav-link">About </a>
+        </li>
+        <li class="navbar__items--2">
+          <a href="#" class="nav-link">Discover</a>
+        </li>
+        <li class="navbar__items--3">
+          <a href="#" class="nav-link">Get Started</a>
+        </li>
+      </ul>
+
+      <button style="display: none" class="hamburger">
+        <img src="./images/icon-hamburger.svg" alt="hamburger" id="img1" />
+      </button>
+    </nav>
+
+    <main class="main__section">
+      <div class="main__section--1">
+        <img
+          src="/funding/images/withdraw-cito.png"
+          width="50"
+          height="50"
+          alt=""
+          class="main--logo"
+          style="border-radius: 50%"
+        />
+        <div class="heading">
+          <h1 class="heading--1">Withdrawal</h1>
+          <p class="heading--5">
+            Withdraw funds from your trading account with ease. You'll receive
+            an email notification upon completion of your trade.
+          </p>
+        </div>
+
+        <div
+          class="main--btn <%= data.user.tradeStatus === 'completed' ? 'inactive--btn' : '' %>"
+        >
+          <button class="main--btn-one">Make a request</button>
+          <button style="display: none" class="main--btn-bookmark">
+            <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <circle fill="#2F2F2F" cx="28" cy="28" r="28" />
+                <path fill="#fff" d="M23 19v18l5-5.058L33 37V19z" />
+              </g>
+            </svg>
+
+            <span>Like</span>
+          </button>
+        </div>
+      </div>
+      <div style="display: block" class="main__section--2">
+        <!-- <div class="value">Trade <%= data.user.tradeStatus %></div> -->
+        <div class="value" id="tradeStatus">
+          <% if (data.user.tradeStatus === "pending") { %> Trade not started <%
+          } else if (data.user.tradeStatus === "paused") { %> Trade paused <% }
+          else if (data.user.tradeStatus === "active") { %> Trade in progress <%
+          } else if (data.user.tradeStatus === "completed") { %> Trade completed
+          <% } %>
+        </div>
+
+        <script>
+          // Get the div element
+          const tradeStatusDiv = document.getElementById("tradeStatus");
+
+          // Update the text based on tradeStatus
+          switch ("<%= data.user.tradeStatus %>") {
+            case "pending":
+              tradeStatusDiv.textContent = "Trade not started";
+              break;
+            case "paused":
+              tradeStatusDiv.textContent = "Trade paused";
+              break;
+            case "active":
+              tradeStatusDiv.textContent = "Trade in progress...";
+              break;
+            case "completed":
+              tradeStatusDiv.textContent = "Trade completed";
+              break;
+            default:
+              tradeStatusDiv.textContent = "Trade loading...";
+              break;
+          }
+        </script>
+
+        <div class="line">
+          <div id="fillLine" class="line--fill"></div>
+        </div>
+        <script>
+          // Get the fill line element
+          const fillLine = document.getElementById("fillLine");
+
+          // Update the width of fill line based on tradeStatus
+          switch ("<%= data.user.tradeStatus %>") {
+            case "pending":
+              fillLine.style.width = "10%";
+              break;
+            case "paused":
+              fillLine.style.width = "30%";
+              break;
+            case "active":
+              fillLine.style.width = "60%";
+              break;
+            case "completed":
+              fillLine.style.width = "100%";
+              break;
+            default:
+              fillLine.style.width = "10%";
+              break;
+          }
+        </script>
+      </div>
+      <div class="main__section--3">
+        <div class="about--text">
+          <h3 class="heading-3">IMPORTANT NOTICE</h3>
+          <p class="paragraph">
+            Withdrawals are only available upon trade completion, and you'll be
+            notified via email once the trade concludes, enabling you to proceed
+            with withdrawal.
+          </p>
+          <p class="paragraph">
+            Alternatively, you can submit a withdrawal request now, subject to
+            review based on market conditions. Please note that premature
+            withdrawals carry inherent risks of loss.
+          </p>
+        </div>
+
+        <div class="about--card">
+          <!-- inactive--card -->
+          <div
+            class="about--card-3 <%= data.user.tradeStatus != 'completed' ? 'inactive--card' : '' %>"
+          >
+            <div class="card--heading">
+              <p class="heading--bold">Reff: <i><%= data.user._id %></i></p>
+              <p class="heading--right">Asset class: Cryptocurrency</p>
+            </div>
+
+            <p class="para">
+              Utilize your unique withdrawal reference to inquire about the
+              withdrawal status via email.
+            </p>
+
+            <div class="card--bottom">
+              <p class="number-less-bold">
+                <span>$<%= data.user.totalRevenue %></span>
+              </p>
+              <button class="btn card--btn">Withdraw</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="overlay__modal overlay__inactive">
+      <div class="modal__text">
+        <div class="heading-btn">
+          <h3 class="heading-3">Withdrawal Method</h3>
+          <button class="close-btn">
+            <img src="/funding/images/icon-close-modal.svg" alt="close-modal" />
+          </button>
+        </div>
+        <p class="para-model">
+          Select a withdrawal method to proceed. Please note that bank
+          withdrawal is only available after the trade has completed.
+        </p>
+      </div>
+
+      <div class="modal__cards">
+        <div class="modal__cards--3 modal__card">
+          <div class="radio-btn">
+            <input type="radio" id="reward75" name="pledge" value="no_reward" />
+            <label for="reward75">
+              Bitcoin Wallet<span> (Binance, Luno, Etc) </span>
+            </label>
+          </div>
+          <p class="modal--para">
+            Transfers typically reflect in customers' wallets within 3 to 6
+            hours. You can use your reference to track the status of the
+            transfer.
+          </p>
+
+          <!-- Selected pledge start -->
+          <div class="open--section">
+            <hr />
+            <input type="text" placeholder=" Enter your btc address" />
+            <input
+              class="pledge-money"
+              type="text"
+              placeholder="$  0.00"
+              value=""
+            />
+
+            <button class="pledge-btn">Continue</button>
+          </div>
+          <!-- Selected pledge end  -->
+        </div>
+        <!-- inactive--card -->
+        <div
+          class="modal__cards--4 modal__card <%= data.user.tradeStatus != 'completed' ? 'inactive--card' : '' %>"
+        >
+          <div class="radio-btn-bank">
+            <input
+              type="radio"
+              id="reward200"
+              name="pledge"
+              value="no_reward"
+            />
+            <label for="reward200"> Direct Bank Withdrawal </label>
+          </div>
+          <p class="modal--para">
+            Transfers are processed within 24 hours. However, the arrival of
+            funds may vary depending on the recipient's bank and country of
+            residence.
+          </p>
+
+          <div class="open--section">
+            <hr />
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 20px;
+              "
+            >
+              <div style="display: flex; width: 100%; justify-content: center">
+                <div class="bank-input-container">
+                  <div class="bank-input-row">
+                    <label for="bankName">Bank Name</label>
+                    <input type="text" id="bankName" class="bank-input" />
+                  </div>
+
+                  <div class="bank-input-row">
+                    <label for="accountHolderName">Account Holder Name</label>
+                    <input
+                      type="text"
+                      id="accountHolderName"
+                      class="bank-input"
+                      autofocus
+                    />
+                  </div>
+
+                  <div class="bank-input-row">
+                    <label for="accountNumber">Account Number</label>
+                    <input type="text" id="accountNumber" class="bank-input" />
+                  </div>
+
+                  <div class="bank-input-row">
+                    <label for="bankAddress">Branch Code / Name</label>
+                    <input type="text" id="branchCode" class="bank-input" />
+                  </div>
+
+                  <div class="bank-input-row">
+                    <label for="ibanRoutingNumber">IBAN / Routing Number</label>
+                    <input
+                      type="text"
+                      id="ibanRoutingNumber"
+                      class="bank-input"
+                    />
+                  </div>
+                  <div class="bank-input-row">
+                    <label for="swiftBic">Swift / BIC</label>
+                    <input type="text" id="swiftBic" class="bank-input" />
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-around">
+                <input
+                  class="pledge-money"
+                  type="text"
+                  placeholder="$  0.00"
+                  value=""
+                />
+                <button class="pledge-btn">Continue</button>
+              </div>
+            </div>
+          </div>
+          <!-- Selected pledge end -->
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay__success overlay__inactive">
+      <div>
+        <img
+          style="border-radius: 50%"
+          src="/funding/images/check-icon.png"
+          alt="success"
+          class="success-img"
+        />
+        <p class="heading-2">Withdrawal Requested!</p>
+        <p>
+          Your withdrawal order has been submitted. An email notification will
+          be sent once it has been processed.
+        </p>
+        <button class="close-btn-success">Got it!</button>
+      </div>
+    </div>
+  </body>
+</html>

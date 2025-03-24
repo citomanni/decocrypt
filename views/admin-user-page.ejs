@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptocito | Cosmos ⚛️</title>
+
+    <link rel="stylesheet" href="/admin/assets/css/main/user-page.css" />
+
+    <!-- ICONS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/admin/assets/images/logo/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="admin/assets/images/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/admin/assets/images/logo/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="main-content">
+      <nav
+        class="navbar navbar-top navbar-expand-md navbar-dark"
+        id="navbar-main"
+      >
+        <div class="container-fluid">
+          <div style="display: flex">
+            <img
+              style="margin-right: 4px"
+              class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
+              src="/assets/images/cosmos-globe.png"
+              alt="logo"
+              width="25"
+              height="25"
+            />
+
+            <span class="h4 mb-0 text-white d-none d-lg-inline-block"
+              >Cosmos</span
+            >
+          </div>
+
+          <!-- User -->
+          <ul class="navbar-nav align-items-center d-none d-md-flex">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link pr-0"
+                href="#"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <div class="media align-items-center">
+                  <span class="avatar avatar-sm rounded-circle">
+                    <img
+                      alt="Image placeholder"
+                      src="<%= data.user.profilePic %>"
+                    />
+                  </span>
+                  <div class="media-body ml-2 d-none d-lg-block">
+                    <span class="mb-0 text-sm font-weight-bold"
+                      ><%= data.user.fullname %></span
+                    >
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div
+        class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+        style="
+          min-height: 200px;
+          background-image: url();
+          background-size: cover;
+          background-position: center top;
+        "
+      >
+        <!-- Mask -->
+        <span class="mask bg-gradient-default opacity-8"></span>
+        <!-- Header container -->
+        <div class="container-fluid d-flex align-items-center">
+          <div class="row">
+            <div class="col-lg-7 col-md-10">
+              <h1 class="display-2 text-white"><%= data.user.fullname %></h1>
+              <p class="text-white mt-0 mb-5"><%= data.user.note %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Page content -->
+      <div class="container-fluid mt--7">
+        <div class="row">
+          <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow">
+              <div class="row justify-content-center">
+                <div class="col-lg-3 order-lg-2">
+                  <div class="card-profile-image">
+                    <a href="#">
+                      <img
+                        src="<%= data.user.profilePic %>"
+                        class="rounded-circle"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"
+              ></div>
+              <div class="card-body pt-0 pt-md-4">
+                <div class="row">
+                  <div class="col">
+                    <div
+                      class="card-profile-stats d-flex justify-content-center mt-md-5"
+                    >
+                      <div>
+                        <span class="heading"><%= data.user.profit %></span>
+                        <span class="description">Profit</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= data.user.capital %></span>
+                        <span class="description">Capital</span>
+                      </div>
+                      <div>
+                        <span class="heading"><%= data.user.bonus %></span>
+                        <span class="description">Bonus</span>
+                      </div>
+                      <div>
+                        <span class="heading"
+                          ><%= data.user.totalRevenue %></span
+                        >
+                        <span class="description">Revenue</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <h3>Contact details</h3>
+                  <div style="display: flex; justify-content: space-around">
+                    <div class="h5 font-weight-300">
+                      <i class="ni location_pin mr-2"></i><%= data.user.phone %>
+                    </div>
+                    <div class="h5 font-weight-300">
+                      <i class="ni location_pin mr-2"></i><%= data.user.country
+                      %>
+                    </div>
+                    <div class="h5 font-weight-300">
+                      <i class="ni location_pin mr-2"></i><%= data.user.email %>
+                    </div>
+                  </div>
+                  <div class="h5 mt-4">
+                    <i class="ni business_briefcase-24 mr-2"></i>Signal type
+                  </div>
+                  <div class="text-uppercase">
+                    <i class="ni education_hat mr-2 text-uppercase"></i><%=
+                    data.user.signals %>
+                  </div>
+                  <hr class="my-4" />
+                  <div style="text-align: left">
+                    <p>Trade plan — <b><%= data.user.plan %></b></p>
+                    <p>Trade status — <b><%= data.user.tradeStatus.charAt(0).toUpperCase() + data.user.tradeStatus.slice(1) %></b></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 20px" class="card bg-secondary shadow">
+              <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h3 class="mb-0">Edit Deposit Addresses</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <form class="update-user-form">
+                  <!-- Amount Info -->
+                  <h6 class="heading-small text-muted mb-4">
+                    User's Unique Addresses
+                  </h6>
+                  <div class="pl-lg-6">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-btc"
+                            >Bitcoin (BTC)</label
+                          >
+                          <input
+                            type="text"
+                            id="input-btc"
+                            class="form-control form-control-alternative"
+                            placeholder="Enter Bitcoin Address"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-eth"
+                            >Ethereum (ETH)</label
+                          >
+                          <input
+                            type="text"
+                            id="input-eth"
+                            class="form-control form-control-alternative"
+                            placeholder="Enter Ethereum Address"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-usdt"
+                            >Tether USDT (USDT)</label
+                          >
+                          <input
+                            type="text"
+                            id="input-usdt"
+                            class="form-control form-control-alternative"
+                            placeholder="Enter USDT Address"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: right;
+                  padding-right: 10px;
+                  padding-bottom: 15px;
+                "
+              >
+                <div class="col-4 text-right">
+                  <a
+                    href="#!"
+                    class="btn btn-sm btn-primary update-user-addr-btn"
+                    >Save</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 order-xl-1">
+            <div class="card bg-secondary shadow">
+              <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                  <div class="col-8">
+                    <h3 class="mb-0">Edit Account</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <form class="update-user-form">
+                  <!-- Amount Info -->
+                  <h6 class="heading-small text-muted mb-4">Amount Info</h6>
+                  <div class="pl-lg-4">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-profit"
+                            >Profit</label
+                          >
+                          <input
+                            type="number"
+                            id="input-profit"
+                            class="form-control form-control-alternative"
+                            placeholder="profit"
+                            value="<%= data.user.profit %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-capital"
+                            >Capital</label
+                          >
+                          <input
+                            type="number"
+                            id="input-capital"
+                            class="form-control form-control-alternative"
+                            placeholder="capital"
+                            value="<%= data.user.capital %>"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-bonus"
+                            >Bonus</label
+                          >
+                          <input
+                            type="number"
+                            id="input-bonus"
+                            class="form-control form-control-alternative"
+                            placeholder="bonus"
+                            value="<%= data.user.bonus %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-revenue"
+                            >Total Revenue</label
+                          >
+                          <input
+                            type="number"
+                            id="input-revenue"
+                            class="form-control form-control-alternative"
+                            placeholder="revenue"
+                            value="<%= data.user.totalRevenue %>"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="my-4" />
+                  <!-- Trade Details -->
+                  <h6 class="heading-small text-muted mb-4">Trade Details</h6>
+                  <div class="pl-lg-4">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-type"
+                            >Trade Type</label
+                          >
+                          <input
+                            type="text"
+                            id="input-type"
+                            class="form-control form-control-alternative"
+                            placeholder="type"
+                            value="<%= data.user.type %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-signal"
+                            >Signals</label
+                          >
+                          <input
+                            type="text"
+                            id="input-signal"
+                            class="form-control form-control-alternative"
+                            placeholder="signal"
+                            value="<%= data.user.signals %>"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-plan"
+                            >Plan</label
+                          >
+                          <input
+                            type="text"
+                            id="input-plan"
+                            class="form-control form-control-alternative"
+                            placeholder="plan"
+                            value="<%= data.user.plan %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-status">Status</label>
+                          <select id="input-status" class="form-control form-control-alternative">
+                            <option value="pending" <% if (data.user.tradeStatus === "pending") { %> selected <% } %>>Pending</option>
+                            <option value="paused" <% if (data.user.tradeStatus === "paused") { %> selected <% } %>>Paused</option>
+                            <option value="active" <% if (data.user.tradeStatus === "active") { %> selected <% } %>>Active</option>
+                            <option value="completed" <% if (data.user.tradeStatus === "completed") { %> selected <% } %>>Completed</option>
+                          </select>
+                        </div>
+                        
+                        <!-- <div class="form-group focused">
+                          <label class="form-control-label" for="input-status"
+                            >Status</label
+                          >
+                          <input
+                            type="text"
+                            id="input-status"
+                            class="form-control form-control-alternative"
+                            placeholder="status"
+                            value="<%= data.user.tradeStatus %>"
+                          />
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="my-4" />
+                  <!-- Personal Information -->
+                  <h6 class="heading-small text-muted mb-4">
+                    Personal Information
+                  </h6>
+                  <div class="pl-lg-4">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-fullname"
+                            >Fullname</label
+                          >
+                          <input
+                            type="text"
+                            id="input-fullname"
+                            class="form-control form-control-alternative"
+                            placeholder="fullname"
+                            value="<%= data.user.fullname %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-email"
+                            >Email address</label
+                          >
+                          <input
+                            type="email"
+                            id="input-email"
+                            class="form-control form-control-alternative"
+                            placeholder="email@example.com"
+                            value="<%= data.user.email %>"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-password"
+                            >Password</label
+                          >
+                          <input
+                            type="text"
+                            id="input-password"
+                            class="form-control form-control-alternative"
+                            placeholder="password"
+                            value="<%= data.user.password %>"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group focused">
+                          <label class="form-control-label" for="input-country"
+                            >Country</label
+                          >
+                          <input
+                            type="text"
+                            id="input-country"
+                            class="form-control form-control-alternative"
+                            placeholder="country"
+                            value="<%= data.user.country %>"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <h6 class="heading-small text-muted mb-4">Message</h6>
+                  <div class="pl-lg-4">
+                    <div class="form-group focused">
+                      <textarea
+                        rows="4"
+                        class="form-control form-control-alternative"
+                        placeholder="Information about the status ..."
+                      >
+<%= data.user.note %></textarea
+                      >
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    id="data-user-id"
+                    name="data-user-id"
+                    value="<%= data.user._id %>"
+                  />
+                </form>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: right;
+                  padding-right: 10px;
+                  padding-bottom: 15px;
+                "
+              >
+                <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary update-user-btn"
+                    >Save</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6 m-auto text-center">
+          <div class="copyright">
+            <p>A product of Cryptocito&copy; 2013</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Your HTML content above this line -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the form element
+        const form = document.querySelector(".update-user-form");
+
+        // Get the "Save" button
+        const saveButton = document.querySelector(".update-user-btn");
+
+        // Listen for the "Save" button click
+        saveButton.addEventListener("click", function () {
+          const userId = document.getElementById("data-user-id").value;
+
+          // Log the user ID
+          //console.log("User ID:", userId);
+
+          // Create an object to store form data
+          const formData = {
+            fullname: document.getElementById("input-fullname").value,
+            email: document.getElementById("input-email").value,
+            country: document.getElementById("input-country").value,
+            password: document.getElementById("input-password").value,
+            type: document.getElementById("input-type").value,
+            signals: document.getElementById("input-signal").value,
+            plan: document.getElementById("input-plan").value,
+            tradeStatus: document.getElementById("input-status").value,
+            note: document.querySelector("textarea").value,
+            profit: parseInt(document.getElementById("input-profit").value, 10),
+            capital: parseInt(
+              document.getElementById("input-capital").value,
+              10
+            ),
+            bonus: parseInt(document.getElementById("input-bonus").value, 10),
+            totalRevenue: parseInt(
+              document.getElementById("input-revenue").value,
+              10
+            ),
+          };
+
+          // Log the created object
+          console.log(formData);
+          // Send a PUT request to the /user/:id route
+          fetch(`/4837jshjfh94y89q293fdkjhf-a73a4d5e2/users/${userId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Handle the response as needed
+              console.log("PUT request response:", data);
+
+              // Reload the page after successful submission
+              location.reload();
+            })
+            .catch((error) => {
+              console.error("Error during PUT request:", error);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
