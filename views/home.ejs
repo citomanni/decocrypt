@@ -25,6 +25,11 @@
     <!-- Styles -->
     <link rel="stylesheet" href="../home/css/main.css" />
 
+    <!-- STYLES -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- SCRIPTS -->
+    <script src="../home/js/script.js" defer></script>
+
     <title>Decocrypt | Secure Your Investment</title>
 </head>
 
@@ -53,8 +58,8 @@
                     </ul>
 
                     <div class="main-header-navbar__login">
-                        <a href="#" class="main-header-navbar__login__login-btn">Login</a>
-                        <a href="#" class="main-header-navbar__login__register-btn">Register</a>
+                        <span class="main-header-navbar__login__login-btn btn--open-login-modal" style="cursor: pointer;">Login</span>
+                        <span class="main-header-navbar__login__register-btn btn--open-modal" style="cursor: pointer;">Register</span>
                     </div>
                 </nav>
 
@@ -135,7 +140,7 @@
                     </h2>
                     <p class="benefits-section__description">
                         Let’s check your hash rate to see how much you will earn today,
-                        Exercitation veniam consequat sunt nostrud amet.
+                        and discover your earnings potential.
                     </p>
 
                     <div class="card-info">
@@ -159,7 +164,7 @@
                             Digital currency in which a record of transactions is
                             maintained.
                         </p>
-                        <a href="#" class="info-card__btn">Start mining <i class="fas fa-angle-right"></i></a>
+                        <span class="info-card__btn btn--open-login-modal" style="cursor: pointer;">Start mining <i class="fas fa-angle-right"></i></span>
                     </div>
                     <div class="info-card">
                         <i class="fab fa-ethereum"></i>
@@ -168,7 +173,7 @@
                             Blockchain technology to create and run decentralized digital
                             applications.
                         </p>
-                        <a href="#" class="info-card__btn">Start mining <i class="fas fa-angle-right"></i></a>
+                        <span class="info-card__btn btn--open-login-modal" style="cursor: pointer;">Start mining <i class="fas fa-angle-right"></i></span>
                     </div>
                     <div class="info-card">
                         <img src="../home/assets/others/litecoin-icon.svg" alt="" class="info-card__icon" />
@@ -177,7 +182,7 @@
                             Cryptocurrency that enables instant payments to anyone in the
                             world.
                         </p>
-                        <a href="#" class="info-card__btn">Start mining <i class="fas fa-angle-right"></i></a>
+                        <span class="info-card__btn btn--open-login-modal" style="cursor: pointer;">Start mining <i class="fas fa-angle-right"></i></span>
                     </div>
                 </div>
             </section>
@@ -244,7 +249,8 @@
             </div>
             <div class="cta-section__subscribe">
                 <input type="email" class="cta-section__subscribe__input" placeholder="Enter your email" />
-                <a href="#" class="cta-section__subscribe__btn">Subscribe</a>
+                <!-- <a href="#" class="cta-section__subscribe__btn">Subscribe</a> -->
+                 <span class="cta-section__subscribe__btn subscribe-btn">Subscribe</span>
             </div>
         </aside>
 
@@ -328,6 +334,346 @@
             </div>
         </footer>
     </div>
+    <!-- MODAL -->
+    <div class="modal hidden">
+      <div class="modal__header">
+        <div class="modal__heading">
+          <div style="display: flex; align-items: center">
+            <figure class="profile--avatar" style="margin-bottom: 10px">
+              <img
+                class=""
+                src="./assets/images/cosmos-globe.png"
+                alt="logo"
+                width="30"
+                height="30"
+                style="margin-bottom: 10px"
+              />
+            </figure>
+            <h2 style="margin-left: 3px" class="modal__title mb-xs">
+              Open account
+            </h2>
+          </div>
+          <!-- <p class="modal__subheading">
+            Open a new account to start an investment.
+          </p> -->
+        </div>
+        <button class="modal__close-btn btn--close-modal">
+          <svg class="modal__close-icon">
+            <use xlink:href="./assets/icons/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <form
+          action="/register"
+          method="POST"
+          class="modal__form register__form"
+        >
+          <div class="input__group">
+            <label for="fullname" class="input__label">Fullname</label>
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              class="input__form"
+              placeholder="Fullname"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="email" class="input__label">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="input__form"
+              placeholder="youremail@gmail.com"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="phone" class="input__label">Phone</label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              class="input__form"
+              placeholder="+44 9876543215"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="country" class="input__label">Country</label>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              class="input__form"
+              placeholder="United Kingdom"
+              required
+            />
+          </div>
+
+          <div class="input__group">
+            <label for="password" class="input__label">Password</label>
+            <div
+              class="password__box input__form"
+              style="display: flex; justify-content: center"
+            >
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="input__password input__passwordSignup"
+                placeholder="Password"
+                style="flex-grow: 1"
+                required
+              />
+              <div
+                style="
+                  display: flex;
+                  justify-content: right;
+                  align-items: center;
+                "
+              >
+                <span
+                  class="togglePassword togglePasswordSignup"
+                  style="
+                    color: gray;
+                    margin-left: 3px;
+                    cursor: pointer;
+                    font-weight: 400;
+                  "
+                  >SHOW</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="input__form">
+            <legend>Type</legend>
+            <div class="trade__type">
+              <label class="btn--radio">
+                <input
+                  type="radio"
+                  name="type"
+                  value="New Trade"
+                  id="typeNew"
+                  required
+                  style="margin-right: 4px"
+                  checked
+                />
+                New Trade
+              </label>
+              <label class="btn--radio">
+                <input
+                  type="radio"
+                  name="type"
+                  value="Recovery"
+                  id="typeRecovery"
+                  required
+                  style="margin-right: 4px"
+                />
+                Recovery
+              </label>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <p class="next__page">
+        <span
+          >Already have an account?
+          <a
+            class="next__page__link btn--close-register btn--open-login-modal"
+            href="#"
+            >LOGIN</a
+          ></span
+        >
+      </p>
+      <div class="modal__footer">
+        <button class="btn btn--normal btn--close-modal">Cancel</button>
+        <button class="btn btn--primary btn--register btn--sm">
+          Register
+          <svg class="btn__icon">
+            <use
+              xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+            ></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- LOGIN MODAL -->
+    <div class="login_modal modal hidden">
+      <div class="modal__header">
+        <div class="modal__heading">
+          <div style="display: flex; align-items: center">
+            <figure class="profile--avatar" style="margin-bottom: 10px">
+              <img
+                class=""
+                src="./assets/images/cosmos-globe.png"
+                alt="logo"
+                width="30"
+                height="30"
+                style="margin-bottom: 10px"
+              />
+            </figure>
+            <h2 style="margin-left: 3px" class="modal__title mb-xs">Login</h2>
+          </div>
+          <p style="margin-bottom: 1rem" class="modal__subheading">
+            Have an account? login and start trading or monitor your existing
+            trade.
+          </p>
+        </div>
+
+        <button class="modal__close-btn btn--close-login-modal">
+          <svg class="modal__close-icon">
+            <use xlink:href="./assets/icons/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <form action="/dashboard" method="POST" class="modal__form login__form">
+          <div class="input__group">
+            <label for="email" class="input__label">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="input__form login-email"
+              placeholder="email@example.com"
+              required
+            />
+          </div>
+          <div class="input__group">
+            <label for="lastName" class="input__label">Password</label>
+            <div
+              class="password__box input__form"
+              style="display: flex; justify-content: center"
+            >
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="input__password login-pass input__passwordLogin"
+                placeholder="Password"
+                style="flex-grow: 1"
+                required
+              />
+              <div
+                style="
+                  display: flex;
+                  justify-content: right;
+                  align-items: center;
+                "
+              >
+                <span
+                  class="togglePassword togglePasswordLogin"
+                  style="
+                    color: gray;
+                    margin-left: 3px;
+                    cursor: pointer;
+                    font-weight: 400;
+                  "
+                  >SHOW</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <label class="input__label"
+              ><span
+                class="btn btn--normal btn--close-login btn--open-forgot-password-modal"
+                >Forgot password?</span
+              ></label
+            >
+          </div>
+        </form>
+      </div>
+      <p class="next__page">
+        <span
+          >Don't have an account?
+          <a class="next__page__link btn--close-login btn--open-modal" href="#"
+            >REGISTER NOW</a
+          ></span
+        >
+      </p>
+      <div class="modal__footer">
+        <button class="btn btn--normal btn--close-login-modal">Cancel</button>
+        <button class="btn btn--primary btn--login btn--sm">
+          Login
+          <svg class="btn__icon">
+            <use
+              xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+            ></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="forgot_password_modal modal hidden">
+      <div class="modal__header">
+        <div class="modal__heading">
+          <div style="display: flex; align-items: center">
+            <figure class="profile--avatar" style="margin-bottom: 10px">
+              <img
+                class=""
+                src="./assets/images/Subject 3.jpeg"
+                alt="logo"
+                width="30"
+                height="30"
+                style="margin-bottom: 10px"
+              />
+            </figure>
+            <h2 style="margin-left: 3px" class="modal__title mb-xs">
+              Forgot Password
+            </h2>
+          </div>
+          <p class="modal__subheading">
+            Having trouble logging into your account? Enter your email address,
+            we’ll send you an email containing a recovery link.
+          </p>
+        </div>
+
+        <button class="modal__close-btn btn--close-forgot-password-modal">
+          <svg class="modal__close-icon">
+            <use xlink:href="./assets/icons/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <form class="modal__form">
+          <div class="input__group">
+            <label for="email" class="input__label">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="input__form"
+              placeholder="youremail@gmail.com"
+              required
+            />
+          </div>
+        </form>
+      </div>
+
+      <div class="modal__footer">
+        <button class="btn btn--normal btn--close-forgot-password-modal">
+          Cancel
+        </button>
+        <button class="btn btn--primary btn--sm">
+          Send Email
+          <svg class="btn__icon">
+            <use
+              xlink:href="./assets/icons/sprite.svg#icon-chevron-thin-right"
+            ></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="overlay hidden"></div>
 </body>
 
 </html>
