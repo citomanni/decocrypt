@@ -7,6 +7,7 @@ const upload = require("../middleware/upload");
 
 router.get("/", userController.home);
 router.get("/users", adminController.getAllUsers);
+router.post("/users", adminController.search);
 router
   .route("/users/:id")
   .get(userController.getUser)

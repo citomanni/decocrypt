@@ -354,20 +354,23 @@
                     >
                       <h4>Users</h4>
                       <form
-                        action="#"
-                        method="GET"
-                        style="float: right; margin-bottom: 8px"
+                        action="/users?page=<%= data.pagination.page %>&limit=<%= data.pagination.limit %>"
+                        method="POST"
+                        style="float: right; margin-bottom: 8px; display: flex; gap: 2px;"
                         class="navbar-search navbar-search-dark form-inline mr-3 d-md-flex ml-lg-auto"
                       >
                         <div class="form-group mb-0">
                           <div class="input-group input-group-alternative">
                             <input
+                              id="searchInput"
                               class="form-control"
+                              name="search"
                               placeholder="Search"
                               type="text"
                             />
                           </div>
                         </div>
+                         <button class="btn btn-primary  shadow-lg">Go</button>
                       </form>
                     </div>
                     <div class="card-body">

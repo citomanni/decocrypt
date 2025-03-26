@@ -6,6 +6,7 @@ const userSchema = new Schema(
     fullname: {
       type: String,
       required: [true, "Please tell us your name!"],
+      index: true,
     },
     email: {
       type: String,
@@ -78,6 +79,8 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+userSchema.index({ fullname: 'text' });
 
 // Pre-save hook to calculate totalRevenue
 userSchema.pre("save", function (next) {
