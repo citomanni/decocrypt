@@ -66,12 +66,12 @@ setInterval(fetchAndUpdateData, 3000);
 // const apiUrl = "https://newsapi.org/v2/everything";
 // const query = "crypto";
 
-// let articles;
-// let firstIndex = 0,
-//   secondIndex = 1,
-//   thirdIndex = 2;
+let articleList;
+let index1 = 0,
+  index2 = 1,
+  index3 = 2;
 
-// let indexes = [];
+let indices = [];
 
 // Function to shuffle an array
 // const shuffleArray = (array) => {
@@ -156,6 +156,11 @@ const fetchAndUpdateNews = async () => {
       const { articles, indexes } = response.data.data;
       const [firstIndex, secondIndex, thirdIndex] = indexes;
 
+      articleList = articles;
+      index1 = firstIndex;
+      index2 = secondIndex;
+      index3 = thirdIndex;
+
       // Update the DOM with the fetched news
       document.querySelector(".news-img-01").setAttribute(
         "src",
@@ -186,13 +191,13 @@ setInterval(fetchAndUpdateNews, 5 * 60 * 1000);
 
 newsRow1.addEventListener("click", function (e) {
   e.preventDefault();
-  window.open(articles[firstIndex].url, "_blank");
+  window.open(articleList[index1].url, "_blank");
 });
 newsRow2.addEventListener("click", function (e) {
   e.preventDefault();
-  window.open(articles[secondIndex].url, "_blank");
+  window.open(articleList[index2].url, "_blank");
 });
 newsRow3.addEventListener("click", function (e) {
   e.preventDefault();
-  window.open(articles[thirdIndex].url, "_blank");
+  window.open(articleList[index3].url, "_blank");
 });
