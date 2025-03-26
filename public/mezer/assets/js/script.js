@@ -62,77 +62,127 @@ const fetchAndUpdateData = () => {
 fetchAndUpdateData();
 setInterval(fetchAndUpdateData, 3000);
 
-const apiKey = "26018462d1fb4212aff659c16dd030d6";
-const apiUrl = "https://newsapi.org/v2/everything";
-const query = "crypto";
+// const apiKey = "26018462d1fb4212aff659c16dd030d6";
+// const apiUrl = "https://newsapi.org/v2/everything";
+// const query = "crypto";
 
-let articles;
-let firstIndex = 0,
-  secondIndex = 1,
-  thirdIndex = 2;
+// let articles;
+// let firstIndex = 0,
+//   secondIndex = 1,
+//   thirdIndex = 2;
 
-let indexes = [];
+// let indexes = [];
 
 // Function to shuffle an array
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+// const shuffleArray = (array) => {
+//   for (let i = array.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [array[i], array[j]] = [array[j], array[i]];
+//   }
+//   return array;
+// };
+
+// // Function to generate unique indexes
+// const generateUniqueIndexes = (count, range) => {
+//   const shuffledIndexes = shuffleArray(
+//     Array.from({ length: range }, (_, i) => i)
+//   );
+//   return shuffledIndexes.slice(0, count);
+// };
+
+// const fetchAndUpdateNews = () => {
+//   const uniqueIndexes = generateUniqueIndexes(3, 100);
+
+//   firstIndex = uniqueIndexes[0];
+//   secondIndex = uniqueIndexes[1];
+//   thirdIndex = uniqueIndexes[2];
+
+//   document
+//     .querySelector(".news-img-01")
+//     .setAttribute(
+//       "src",
+//       articles[firstIndex].urlToImage || "assets/images/facebook-trending.webp"
+//     );
+//   document
+//     .querySelector(".news-img-02")
+//     .setAttribute(
+//       "src",
+//       articles[secondIndex].urlToImage || "assets/images/trending-02.webp"
+//     );
+//   document
+//     .querySelector(".news-img-03")
+//     .setAttribute(
+//       "src",
+//       articles[thirdIndex].urlToImage || "assets/images/news-trend.jpeg"
+//     );
+//   document.querySelector(".news-01").innerHTML = articles[firstIndex].title;
+//   document.querySelector(".news-02").innerHTML = articles[secondIndex].title;
+//   document.querySelector(".news-03").innerHTML = articles[thirdIndex].title;
+// };
+
+// axios
+//   .get(`${apiUrl}?q=${query}&apiKey=${apiKey}`)
+//   .then((response) => {
+//     // Handle the response data
+//     articles = response.data.articles;
+
+//     fetchAndUpdateNews();
+//     setInterval(fetchAndUpdateNews, 5 * 60 * 1000);
+//   })
+//   .catch((error) => {
+//     // Handle any errors
+//     console.error(error);
+//   });
+
+// newsRow1.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   window.open(articles[firstIndex].url, "_blank");
+// });
+// newsRow2.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   window.open(articles[secondIndex].url, "_blank");
+// });
+
+// newsRow3.addEventListener("click", function (e) {
+//   e.preventDefault();
+//   window.open(articles[thirdIndex].url, "_blank");
+// });
+
+const fetchAndUpdateNews = async () => {
+  try {
+    const response = await axios.get("/api/get-news");
+
+    if (response.data.status === "success") {
+      const { articles, indexes } = response.data.data;
+      const [firstIndex, secondIndex, thirdIndex] = indexes;
+
+      // Update the DOM with the fetched news
+      document.querySelector(".news-img-01").setAttribute(
+        "src",
+        articles[firstIndex].urlToImage || "assets/images/facebook-trending.webp"
+      );
+      document.querySelector(".news-img-02").setAttribute(
+        "src",
+        articles[secondIndex].urlToImage || "assets/images/trending-02.webp"
+      );
+      document.querySelector(".news-img-03").setAttribute(
+        "src",
+        articles[thirdIndex].urlToImage || "assets/images/news-trend.jpeg"
+      );
+      document.querySelector(".news-01").innerHTML = articles[firstIndex].title;
+      document.querySelector(".news-02").innerHTML = articles[secondIndex].title;
+      document.querySelector(".news-03").innerHTML = articles[thirdIndex].title;
+    }
+  } catch (error) {
+    console.error("Error fetching news:", error);
   }
-  return array;
 };
 
-// Function to generate unique indexes
-const generateUniqueIndexes = (count, range) => {
-  const shuffledIndexes = shuffleArray(
-    Array.from({ length: range }, (_, i) => i)
-  );
-  return shuffledIndexes.slice(0, count);
-};
+// Call the function once to load news
+fetchAndUpdateNews();
 
-const fetchAndUpdateNews = () => {
-  const uniqueIndexes = generateUniqueIndexes(3, 100);
-
-  firstIndex = uniqueIndexes[0];
-  secondIndex = uniqueIndexes[1];
-  thirdIndex = uniqueIndexes[2];
-
-  document
-    .querySelector(".news-img-01")
-    .setAttribute(
-      "src",
-      articles[firstIndex].urlToImage || "assets/images/facebook-trending.webp"
-    );
-  document
-    .querySelector(".news-img-02")
-    .setAttribute(
-      "src",
-      articles[secondIndex].urlToImage || "assets/images/trending-02.webp"
-    );
-  document
-    .querySelector(".news-img-03")
-    .setAttribute(
-      "src",
-      articles[thirdIndex].urlToImage || "assets/images/news-trend.jpeg"
-    );
-  document.querySelector(".news-01").innerHTML = articles[firstIndex].title;
-  document.querySelector(".news-02").innerHTML = articles[secondIndex].title;
-  document.querySelector(".news-03").innerHTML = articles[thirdIndex].title;
-};
-
-axios
-  .get(`${apiUrl}?q=${query}&apiKey=${apiKey}`)
-  .then((response) => {
-    // Handle the response data
-    articles = response.data.articles;
-
-    fetchAndUpdateNews();
-    setInterval(fetchAndUpdateNews, 5 * 60 * 1000);
-  })
-  .catch((error) => {
-    // Handle any errors
-    console.error(error);
-  });
+// Set interval to update news every 5 minutes
+setInterval(fetchAndUpdateNews, 5 * 60 * 1000);
 
 newsRow1.addEventListener("click", function (e) {
   e.preventDefault();
@@ -142,7 +192,6 @@ newsRow2.addEventListener("click", function (e) {
   e.preventDefault();
   window.open(articles[secondIndex].url, "_blank");
 });
-
 newsRow3.addEventListener("click", function (e) {
   e.preventDefault();
   window.open(articles[thirdIndex].url, "_blank");

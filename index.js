@@ -5,6 +5,7 @@ const path = require("path");
 
 const userRouter = require("./routes/userRoutes");
 const adminRouter = require("./routes/adminRoutes");
+const newsRoutes = require("./routes/newsRoutes");
 
 dotenv.config();
 const app = express();
@@ -30,6 +31,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use("/4837jshjfh94y89q293fdkjhf-a73a4d5e2", adminRouter);
+app.use("/api", newsRoutes);
 app.use("/", userRouter);
 
 app.use((req, res, next) => {
