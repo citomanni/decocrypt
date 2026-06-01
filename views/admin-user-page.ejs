@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Decocrypt | Secure Your Investment</title>
+    <title>Deco Holdings | Secure Your Investment</title>
 
     <link rel="stylesheet" href="/admin/assets/css/main/user-page.css" />
 
@@ -23,7 +23,7 @@
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="admin/assets/images/logo/favicon-16x16.png"
+      href="/admin/assets/images/logo/favicon-16x16.png"
     />
     <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
     <link
@@ -58,7 +58,7 @@
             />
 
             <span class="h4 mb-0 text-white d-none d-lg-inline-block"
-              >Decocrypt</span
+              >Deco Holdings</span
             >
           </div>
 
@@ -215,6 +215,7 @@
                             id="input-btc"
                             class="form-control form-control-alternative"
                             placeholder="Enter Bitcoin Address"
+                            value="<%= data.user.Bitcoin || '' %>"
                           />
                         </div>
                       </div>
@@ -229,6 +230,7 @@
                             id="input-eth"
                             class="form-control form-control-alternative"
                             placeholder="Enter Ethereum Address"
+                            value="<%= data.user.Ethereum || '' %>"
                           />
                         </div>
                       </div>
@@ -243,6 +245,7 @@
                             id="input-usdt"
                             class="form-control form-control-alternative"
                             placeholder="Enter USDT Address"
+                            value="<%= data.user.Tether || '' %>"
                           />
                         </div>
                       </div>
@@ -402,19 +405,6 @@
                             <option value="completed" <% if (data.user.tradeStatus === "completed") { %> selected <% } %>>Completed</option>
                           </select>
                         </div>
-                        
-                        <!-- <div class="form-group focused">
-                          <label class="form-control-label" for="input-status"
-                            >Status</label
-                          >
-                          <input
-                            type="text"
-                            id="input-status"
-                            class="form-control form-control-alternative"
-                            placeholder="status"
-                            value="<%= data.user.tradeStatus %>"
-                          />
-                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -528,7 +518,7 @@
       <div class="row align-items-center justify-content-xl-between">
         <div class="col-xl-6 m-auto text-center">
           <div class="copyright">
-            <p>A product of Decocrypt&copy; 2025</p>
+            <p>A product of Deco Holdings&copy; 2025</p>
           </div>
         </div>
       </div>
@@ -538,64 +528,63 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Get the form element
-        const form = document.querySelector(".update-user-form");
+        const userId = document.getElementById("data-user-id").value;
+        const updateUserUrl = `<%= adminPath %>/users/${userId}`;
 
-        // Get the "Save" button
-        const saveButton = document.querySelector(".update-user-btn");
-
-        // Listen for the "Save" button click
-        saveButton.addEventListener("click", function () {
-          const userId = document.getElementById("data-user-id").value;
-
-          // Log the user ID
-          //console.log("User ID:", userId);
-
-          // Create an object to store form data
-          const formData = {
-            fullname: document.getElementById("input-fullname").value,
-            email: document.getElementById("input-email").value,
-            country: document.getElementById("input-country").value,
-            password: document.getElementById("input-password").value,
-            type: document.getElementById("input-type").value,
-            signals: document.getElementById("input-signal").value,
-            plan: document.getElementById("input-plan").value,
-            tradeStatus: document.getElementById("input-status").value,
-            note: document.querySelector("textarea").value,
-            profit: parseInt(document.getElementById("input-profit").value, 10),
-            capital: parseInt(
-              document.getElementById("input-capital").value,
-              10
-            ),
-            bonus: parseInt(document.getElementById("input-bonus").value, 10),
-            totalRevenue: parseInt(
-              document.getElementById("input-revenue").value,
-              10
-            ),
-          };
-
-          // Log the created object
-          console.log(formData);
-          // Send a PUT request to the /user/:id route
-          fetch(`/4837jshjfh94y89q293fdkjhf-a73a4d5e2/users/${userId}`, {
+        // Shared helper: PUT the given fields to this user and reload on success.
+        function updateUser(fields) {
+          fetch(updateUserUrl, {
             method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(fields),
           })
             .then((response) => response.json())
-            .then((data) => {
-              // Handle the response as needed
-              console.log("PUT request response:", data);
-
-              // Reload the page after successful submission
-              location.reload();
-            })
+            .then(() => location.reload())
             .catch((error) => {
               console.error("Error during PUT request:", error);
             });
-        });
+        }
+
+        // Save account / trade details.
+        document
+          .querySelector(".update-user-btn")
+          .addEventListener("click", function () {
+            updateUser({
+              fullname: document.getElementById("input-fullname").value,
+              email: document.getElementById("input-email").value,
+              country: document.getElementById("input-country").value,
+              password: document.getElementById("input-password").value,
+              type: document.getElementById("input-type").value,
+              signals: document.getElementById("input-signal").value,
+              plan: document.getElementById("input-plan").value,
+              tradeStatus: document.getElementById("input-status").value,
+              note: document.querySelector("textarea").value,
+              profit: parseInt(
+                document.getElementById("input-profit").value,
+                10
+              ),
+              capital: parseInt(
+                document.getElementById("input-capital").value,
+                10
+              ),
+              bonus: parseInt(document.getElementById("input-bonus").value, 10),
+              totalRevenue: parseInt(
+                document.getElementById("input-revenue").value,
+                10
+              ),
+            });
+          });
+
+        // Save this user's unique deposit addresses.
+        document
+          .querySelector(".update-user-addr-btn")
+          .addEventListener("click", function () {
+            updateUser({
+              Bitcoin: document.getElementById("input-btc").value,
+              Ethereum: document.getElementById("input-eth").value,
+              Tether: document.getElementById("input-usdt").value,
+            });
+          });
       });
     </script>
   </body>

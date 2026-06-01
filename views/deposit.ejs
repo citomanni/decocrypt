@@ -47,7 +47,7 @@
 
     <script defer src="/funding/js/app copy.js"></script>
 
-    <title>Decocrypt | Secure Your Investment</title>
+    <title>Deco Holdings | Secure Your Investment</title>
   </head>
   <body>
     <nav class="navbar">
@@ -67,7 +67,7 @@
           });
       </script>
       <div style="display: flex; align-items: center">
-        <h2 class="header__logo mb-sm gradient-text">Decocrypt</h2>
+        <h2 class="header__logo mb-sm gradient-text">Deco Holdings</h2>
         <img
           style="margin-right: 4px"
           class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
@@ -77,7 +77,7 @@
           height="25"
         />
       </div>
-      <!-- <h2 class="header__logo mb-sm gradient-text">Decocrypt</h2> -->
+      <!-- <h2 class="header__logo mb-sm gradient-text">Deco Holdings</h2> -->
       <ul style="display: none" class="navbar__items">
         <li class="navbar__items--1">
           <a href="#" class="nav-link">About </a>
@@ -135,42 +135,38 @@
             // Function to handle file upload when a file is selected
             function uploadProofOfPayment(input) {
               const file = input.files[0];
-              if (file) {
-                const formData = new FormData();
-                formData.append("proofOfPayment", file);
+              if (!file) return;
 
-                //const userId = document.getElementById("data-user-id").value;
+              const formData = new FormData();
+              formData.append("proof", file);
 
-                const toastContainer =
-                  document.getElementById("toast-container");
-                toastContainer.textContent = "uploading...";
-                toastContainer.style.display = "block";
-                setTimeout(() => {
-                  toastContainer.style.display = "none";
-                }, 2000);
+              const userId = "<%= data.user._id %>";
+              const toastContainer = document.getElementById("toast-container");
+              toastContainer.textContent = "uploading...";
+              toastContainer.style.display = "block";
 
-                // fetch(`/users/${userId}/proof-of-payment`, {
-                //   method: "PUT",
-                //   body: formData,
-                // })
-                //   .then((response) => response.json())
-                //   .then((data) => {
-                //     console.log("Proof of payment uploaded:", data);
-
-                //     toastContainer.textContent = "upload successful";
-                // setTimeout(() => {
-                //   toastContainer.style.display = "none";
-                // }, 2000);
-                //   })
-                //   .catch((error) => {
-                //     console.error("Error uploading proof of payment:", error);
-                //     // Optionally, you can display an error message or perform other actions
-                //     toastContainer.textContent = "Error uploading POP";
-                //     setTimeout(() => {
-                //       toastContainer.style.display = "none";
-                //     }, 2000);
-                //   });
-              }
+              fetch(`/users/${userId}/proof-of-payment`, {
+                method: "POST",
+                body: formData,
+              })
+                .then((response) => {
+                  if (!response.ok) throw new Error("upload failed");
+                  return response.json();
+                })
+                .then(() => {
+                  toastContainer.textContent =
+                    "Proof uploaded — pending review";
+                  setTimeout(() => {
+                    toastContainer.style.display = "none";
+                  }, 2500);
+                })
+                .catch((error) => {
+                  console.error("Error uploading proof of payment:", error);
+                  toastContainer.textContent = "Error uploading POP";
+                  setTimeout(() => {
+                    toastContainer.style.display = "none";
+                  }, 2500);
+                });
             }
           </script>
 
@@ -451,7 +447,7 @@
                 if (typeof QRious !== "undefined") {
                   const qr = new QRious({
                     element: document.getElementById("ethQRCode"),
-                    value: btcAddress,
+                    value: ethAddress,
                     size: 250,
                   });
                 } else {
@@ -555,7 +551,7 @@
                 if (typeof QRious !== "undefined") {
                   const qr = new QRious({
                     element: document.getElementById("usdtQRCode"),
-                    value: btcAddress,
+                    value: usdtAddress,
                     size: 250,
                   });
                 } else {
@@ -590,5 +586,6 @@
       </div>
     </div>
     <div class="copy-toast-container" id="copy-toast-container"></div>
+    <%- include('partials/line') %>
   </body>
 </html>

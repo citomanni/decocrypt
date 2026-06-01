@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const apiKey = "26018462d1fb4212aff659c16dd030d6";
+const apiKey = process.env.NEWS_API_KEY;
 const apiUrl = "https://newsapi.org/v2/everything";
 const query = "crypto";
 

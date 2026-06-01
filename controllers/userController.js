@@ -1,40 +1,17 @@
 const CoinGecko = require("coingecko-api");
-const cloudinary = require("../utils/cloudinary");
-const streamifier = require("streamifier");
+const { uploadFromBuffer, deleteImage } = require("../utils/cloudinary");
 const User = require("../models/User");
+const Deposit = require("../models/Deposit");
+const WithdrawalRequest = require("../models/WithdrawalRequest");
 const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/appError");
 const APIFeatures = require("../utils/apiFeatures");
 
-const uploadFromBuffer = (file) =>
-  new Promise((resolve, reject) => {
-    const cldUploadStream = cloudinary.uploader.upload_stream(
-      /*{
-        folder: "foo"
-      },*/
-      (error, result) => {
-        if (result) {
-          resolve(result);
-        } else {
-          reject(error);
-        }
-      }
-    );
-
-    streamifier.createReadStream(file.buffer).pipe(cldUploadStream);
-  });
-
-const deleteImageFromCloudinary = async (publicId) => {
-  if (publicId) {
-    await cloudinary.uploader.destroy(publicId);
-  }
-};
-
-module.exports.home = (req, res, next) => {
-  // res.render("index");
+exports.home = (req, res, next) => {
   res.render("home");
 };
 
-module.exports.getUser = catchAsync(async (req, res, next) => {
+exports.getUser = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(
     User.findById(req.params.id),
     req.query
@@ -47,7 +24,7 @@ module.exports.getUser = catchAsync(async (req, res, next) => {
   });
 });
 
-module.exports.updateProfile = catchAsync(async (req, res, next) => {
+exports.updateProfile = catchAsync(async (req, res, next) => {
   const user = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -74,7 +51,6 @@ exports.updateDP = catchAsync(async (req, res, next) => {
   }
   // Upload image to Cloudinary
   const result = await uploadFromBuffer(req.file);
-  //console.log(result);
   // Update the user with the Cloudinary URL
   const updatedUser = await User.findByIdAndUpdate(
     req.params.id,
@@ -87,17 +63,17 @@ exports.updateDP = catchAsync(async (req, res, next) => {
     data: { user: updatedUser },
   });
   if (prevImageId) {
-    await deleteImageFromCloudinary(prevImageId);
+    await deleteImage(prevImageId);
   }
 });
 
 exports.dashboard = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  let user = await User.findOne({ email });
+  const user = await User.findOne({ email });
 
   if (!user || password !== user.password) {
-    res.status(401).json({
+    return res.status(401).json({
       status: "fail",
     });
   }
@@ -107,7 +83,7 @@ exports.dashboard = catchAsync(async (req, res, next) => {
   });
 });
 
-module.exports.deposit = catchAsync(async (req, res, next) => {
+exports.deposit = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   const data = {
     user,
@@ -115,7 +91,7 @@ module.exports.deposit = catchAsync(async (req, res, next) => {
   res.render("deposit", { data });
 });
 
-module.exports.withdrawal = catchAsync(async (req, res, next) => {
+exports.withdrawal = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   const data = {
     user,
@@ -123,7 +99,7 @@ module.exports.withdrawal = catchAsync(async (req, res, next) => {
   res.render("withdrawal", { data });
 });
 
-module.exports.profile = catchAsync(async (req, res, next) => {
+exports.profile = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   const data = {
     user,
@@ -131,7 +107,7 @@ module.exports.profile = catchAsync(async (req, res, next) => {
   res.render("user-profile", { data });
 });
 
-module.exports.settings = catchAsync(async (req, res, next) => {
+exports.settings = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.id);
   const data = {
     user,
@@ -139,7 +115,7 @@ module.exports.settings = catchAsync(async (req, res, next) => {
   res.render("settings", { data });
 });
 
-module.exports.getCurrentPrice = catchAsync(async (req, res, next) => {
+exports.getCurrentPrice = catchAsync(async (req, res, next) => {
   const CoinGeckoClient = new CoinGecko();
   const data = await CoinGeckoClient.exchanges.fetchTickers("bitfinex", {
     coin_ids: ["bitcoin", "ethereum", "ripple", "litecoin", "stellar"],
@@ -156,5 +132,48 @@ module.exports.getCurrentPrice = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     data: _coinList,
+  });
+});
+
+// Submit a deposit proof-of-payment screenshot (creates a pending Deposit).
+exports.submitProofOfPayment = catchAsync(async (req, res, next) => {
+  if (!req.file) {
+    return next(new AppError("Please upload a proof of payment image.", 400));
+  }
+
+  const result = await uploadFromBuffer(req.file);
+
+  const deposit = await Deposit.create({
+    user: req.params.id,
+    method: req.body.method || "Wallet",
+    amount: req.body.amount ? Number(req.body.amount) : 0,
+    proofUrl: result.secure_url,
+    proofId: result.public_id,
+  });
+
+  res.status(201).json({
+    status: "success",
+    data: { deposit },
+  });
+});
+
+// Submit a withdrawal request (BTC or bank). Stored as pending for admin review.
+exports.submitWithdrawalRequest = catchAsync(async (req, res, next) => {
+  const { method, amount, ...destination } = req.body;
+
+  if (method !== "btc" && method !== "bank") {
+    return next(new AppError("Invalid withdrawal method.", 400));
+  }
+
+  const request = await WithdrawalRequest.create({
+    user: req.params.id,
+    method,
+    amount: amount ? Number(amount) : 0,
+    destination,
+  });
+
+  res.status(201).json({
+    status: "success",
+    data: { request },
   });
 });
