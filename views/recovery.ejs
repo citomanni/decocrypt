@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="/funding/css/style copy.css" />
+    <script defer src="/funding/js/app copy.js"></script>
+    <title>Deco Holdings | Recovery Case</title>
+    <style>
+      .recovery-wrap {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 16px;
+      }
+      .recovery-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        margin-bottom: 18px;
+      }
+      .recovery-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+      .recovery-field label {
+        font-weight: 600;
+        color: #252e42;
+        font-size: 14px;
+      }
+      .recovery-field input,
+      .recovery-field select,
+      .recovery-field textarea {
+        padding: 10px 12px;
+        border: 1px solid #d7dce5;
+        border-radius: 8px;
+        font: inherit;
+      }
+      .recovery-submit {
+        background: #5f3dc4;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 18px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+      }
+      .timeline {
+        list-style: none;
+        padding: 0;
+        margin: 16px 0 0;
+      }
+      .timeline li {
+        position: relative;
+        padding: 0 0 22px 26px;
+        border-left: 2px solid #e1e6f0;
+      }
+      .timeline li:last-child {
+        border-left-color: transparent;
+      }
+      .timeline li::before {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e1e6f0;
+      }
+      .timeline li.done::before {
+        background: #3c5df1;
+      }
+      .timeline li.current::before {
+        background: #2bb673;
+        box-shadow: 0 0 0 4px rgba(43, 182, 115, 0.2);
+      }
+      .progress-track {
+        background: #eef1f8;
+        border-radius: 20px;
+        height: 12px;
+        overflow: hidden;
+        margin: 8px 0 4px;
+      }
+      .progress-fill {
+        background: #3c5df1;
+        height: 100%;
+      }
+      .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        background: #eef1f8;
+        color: #3c5df1;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div id="goback">
+        <span
+          ><i
+            style="font-size: 22px; color: #3c5df1"
+            class="bi bi-chevron-left"
+          ></i
+        ></span>
+      </div>
+      <script>
+        document
+          .getElementById("goback")
+          .addEventListener("click", function () {
+            window.history.back();
+          });
+      </script>
+      <div style="display: flex; align-items: center">
+        <h2 class="header__logo mb-sm gradient-text">Deco Holdings</h2>
+        <img
+          style="margin-right: 4px"
+          src="/assets/Logo-D.png"
+          alt="logo"
+          width="25"
+          height="25"
+        />
+      </div>
+    </nav>
+
+    <main class="recovery-wrap">
+      <div class="recovery-card">
+        <h1 class="heading--1" style="margin-top: 0">Fund Recovery</h1>
+        <p class="heading--5">
+          Submit the details of your lost or stolen crypto. Our recovery team
+          reviews each case and keeps you updated on the progress here.
+        </p>
+      </div>
+
+      <% if (data.case) { %>
+      <!-- Existing case: show status + timeline -->
+      <% const steps = [
+           { key: 'submitted', label: 'Submitted' },
+           { key: 'under_review', label: 'Under Review' },
+           { key: 'in_progress', label: 'In Progress' },
+           { key: 'recovered', label: 'Recovered' },
+         ];
+         const order = ['submitted','under_review','in_progress','recovered','closed'];
+         const currentIdx = order.indexOf(data.case.status); %>
+      <div class="recovery-card">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h3 class="heading-3" style="margin: 0">Case Status</h3>
+          <span class="status-badge"
+            ><%= data.case.status.replace('_', ' ') %></span
+          >
+        </div>
+
+        <div class="progress-track">
+          <div
+            class="progress-fill"
+            style="width: <%= data.case.progress %>%"
+          ></div>
+        </div>
+        <small><%= data.case.progress %>% complete</small>
+
+        <ul class="timeline">
+          <% steps.forEach(function (step) {
+               const idx = order.indexOf(step.key);
+               let cls = '';
+               if (idx < currentIdx) cls = 'done';
+               else if (idx === currentIdx) cls = 'current';
+          %>
+          <li class="<%= cls %>"><%= step.label %></li>
+          <% }); %>
+          <% if (data.case.status === 'closed') { %>
+          <li class="current">Closed</li>
+          <% } %>
+        </ul>
+
+        <% if (data.case.adminNotes) { %>
+        <hr />
+        <p><strong>Update from our team:</strong> <%= data.case.adminNotes %></p>
+        <% } %>
+      </div>
+
+      <div class="recovery-card">
+        <h3 class="heading-3" style="margin-top: 0">Case Details</h3>
+        <p><strong>Asset:</strong> <%= data.case.asset %></p>
+        <p>
+          <strong>Amount lost:</strong> <%= data.case.amountLost %>
+          <%= data.case.currency %>
+        </p>
+        <% if (data.case.scamType) { %>
+        <p><strong>Type:</strong> <%= data.case.scamType %></p>
+        <% } %>
+        <% if (data.case.description) { %>
+        <p><strong>Description:</strong> <%= data.case.description %></p>
+        <% } %>
+        <% if (data.case.evidenceUrl) { %>
+        <p>
+          <strong>Evidence:</strong>
+          <a href="<%= data.case.evidenceUrl %>" target="_blank">View upload</a>
+        </p>
+        <% } %>
+      </div>
+      <% } else { %>
+      <!-- No case yet: submission form -->
+      <div class="recovery-card">
+        <form
+          action="/users/<%= data.user._id %>/recovery"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="recovery-field">
+            <label for="asset">Asset lost (e.g. Bitcoin, USDT)</label>
+            <input type="text" id="asset" name="asset" required />
+          </div>
+
+          <div class="recovery-field">
+            <label for="amountLost">Amount lost</label>
+            <input
+              type="number"
+              step="any"
+              id="amountLost"
+              name="amountLost"
+            />
+          </div>
+
+          <div class="recovery-field">
+            <label for="currency">Value currency</label>
+            <select id="currency" name="currency">
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+            </select>
+          </div>
+
+          <div class="recovery-field">
+            <label for="dateLost">Approximate date of loss</label>
+            <input type="date" id="dateLost" name="dateLost" />
+          </div>
+
+          <div class="recovery-field">
+            <label for="scamType">What happened?</label>
+            <select id="scamType" name="scamType">
+              <option value="Phishing">Phishing</option>
+              <option value="Fake exchange / broker">
+                Fake exchange / broker
+              </option>
+              <option value="Investment scam">Investment scam</option>
+              <option value="Wallet compromise">Wallet compromise</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="recovery-field">
+            <label for="description">Describe what happened</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+          </div>
+
+          <div class="recovery-field">
+            <label for="evidence">Evidence (screenshot, optional)</label>
+            <input
+              type="file"
+              id="evidence"
+              name="evidence"
+              accept="image/*"
+            />
+          </div>
+
+          <button type="submit" class="recovery-submit">Submit Case</button>
+        </form>
+      </div>
+      <% } %>
+    </main>
+
+    <%- include('partials/line') %>
+  </body>
+</html>

@@ -80,8 +80,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-userSchema.index({ fullname: 'text' });
-
 // Pre-save hook to calculate totalRevenue
 userSchema.pre("save", function (next) {
   // Calculate totalRevenue as bonus + profit

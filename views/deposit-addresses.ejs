@@ -35,7 +35,7 @@
       color="#5bbad5"
     />
 
-    <title>Decocrypt | Secure Your Investment</title>
+    <title>Deco Holdings | Secure Your Investment</title>
   </head>
   <body>
     <header class="hero">
@@ -79,7 +79,7 @@
             />
             <h3 class="coin">Bitcoin</h3>
           </div>
-          <p class="coin-addr"><%= data.address.Bitcoin %></p>
+          <p class="coin-addr"><%= (data.address && data.address.Bitcoin) || '' %></p>
         </div>
         <div class="card" data-crypto="Ethereum">
           <div style="display: flex; align-items: center; gap: 3px">
@@ -93,7 +93,7 @@
             />
             <h3 class="coin">Ethereum</h3>
           </div>
-          <p class="coin-addr"><%= data.address.Ethereum %></p>
+          <p class="coin-addr"><%= (data.address && data.address.Ethereum) || '' %></p>
         </div>
         <div class="card" data-crypto="Tether">
           <div style="display: flex; align-items: center; gap: 3px">
@@ -107,11 +107,14 @@
             />
             <h3 class="coin">Tether</h3>
           </div>
-          <p class="coin-addr"><%= data.address.Tether %></p>
+          <p class="coin-addr"><%= (data.address && data.address.Tether) || '' %></p>
         </div>
       </section>
     </main>
 
+    <script>
+      window.ADMIN_PATH = "<%= adminPath %>";
+    </script>
     <script src="/admin/assets/js/addresses.js"></script>
   </body>
 </html>

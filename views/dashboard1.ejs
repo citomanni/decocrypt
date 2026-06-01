@@ -3,52 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Decocrypt | Secure Your Investment</title>
+    <title>Deco Holdings | Secure Your Investment</title>
 
-    <link rel="stylesheet" href="mezer/assets/css/main/app1.css" />
-    <link rel="stylesheet" href="mezer/assets/css/main/app-dark1.css" />
+    <link rel="stylesheet" href="/mezer/assets/css/main/app1.css" />
+    <link rel="stylesheet" href="/mezer/assets/css/main/app-dark1.css" />
     <!-- ICONS -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="admin/assets/images/logo/apple-touch-icon.png"
+      href="/admin/assets/images/logo/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="admin/assets/images/logo/favicon-32x32.png"
+      href="/admin/assets/images/logo/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="admin/assets/images/logo/favicon-16x16.png"
+      href="/admin/assets/images/logo/favicon-16x16.png"
     />
-    <link rel="manifest" href="admin/assets/images/logo/site.webmanifest" />
+    <link rel="manifest" href="/admin/assets/images/logo/site.webmanifest" />
     <link
       rel="mask-icon"
-      href="admin/assets/images/logo/safari-pinned-tab.svg"
+      href="/admin/assets/images/logo/safari-pinned-tab.svg"
       color="#5bbad5"
     />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
 
-    <link rel="stylesheet" href="mezer/assets/css/shared/iconly.css" />
+    <link rel="stylesheet" href="/mezer/assets/css/shared/iconly.css" />
 
     <link
       rel="stylesheet"
-      href="Main/plugins/fontawesome/css/font-awesome1.css"/>
+      href="/Main/plugins/fontawesome/css/font-awesome1.css"/>
       <link
       rel="stylesheet"
-      href="Main/plugins/animo/animate%2banimo.css"
+      href="/Main/plugins/animo/animate%2banimo.css"
     />
 
-    <link rel="stylesheet" href="Main/plugins/csspinner/csspinner.min.css" />
-    <link rel="stylesheet" href="Main/app/css/app.css" />
+    <link rel="stylesheet" href="/Main/plugins/csspinner/csspinner.min.css" />
+    <link rel="stylesheet" href="/Main/app/css/app.css" />
     <!--this code needs editing-->
-    <script src="Main/plugins/modernizr/modernizr.js"></script>
-    <script src="Main/plugins/fastclick/fastclick.js"></script>
+    <script src="/Main/plugins/modernizr/modernizr.js"></script>
+    <script src="/Main/plugins/fastclick/fastclick.js"></script>
   </head>
 
   <body>
@@ -69,7 +69,7 @@
                     >
                       <img
                         class=""
-                        src="./assets/Logo-D.png"
+                        src="/assets/Logo-D.png"
                         alt="logo"
                         width="auto"
                         height="25"
@@ -209,6 +209,14 @@
                   </a>
                 </li>
 
+                <% if (data.user.type === "Recovery") { %>
+                <li class="menu-item">
+                  <a href="/users/<%= data.user._id %>/recovery" class="menu-link">
+                    <span><i class="bi bi-shield-check"></i> Recovery</span>
+                  </a>
+                </li>
+                <% } %>
+
                 <li class="menu-item">
                   <a href="#todays-trades" class="menu-link">
                     <span><i class="bi bi-table"></i> Trending</span>
@@ -255,27 +263,22 @@
                   </div>
                 </li>
 
-                <li class="menu-item chat-button">
+                <li class="menu-item">
+                  <% if (typeof lineUrl !== "undefined" && lineUrl) { %>
+                  <a
+                    href="<%= lineUrl %>"
+                    target="_blank"
+                    rel="noopener"
+                    class="menu-link"
+                  >
+                    <span><i class="bi bi-chat-fill"></i> Support</span>
+                  </a>
+                  <% } else { %>
                   <a href="#" class="menu-link">
                     <span><i class="bi bi-chat-fill"></i> Support</span>
                   </a>
+                  <% } %>
                 </li>
-                <script>
-                  (function() {
-                    function onTidioChatApiReady() {
-                      window.tidioChatApi.hide();
-                    }
-                    
-                    if (window.tidioChatApi) {
-                      window.tidioChatApi.on("ready", onTidioChatApiReady);
-                    }
-                    
-                    document.querySelector(".chat-button").addEventListener("click", function() {
-                      window.tidioChatApi.show();
-                      window.tidioChatApi.open();
-                    });
-                  })();
-                </script>
               </ul>
             </div>
           </nav>
@@ -432,7 +435,7 @@
                                 style="width: 10px"
                               >
                                 <use
-                                  xlink:href="assets/images/bootstrap-icons.svg#circle-fill"
+                                  xlink:href="/assets/images/bootstrap-icons.svg#circle-fill"
                                 />
                               </svg>
                               <h5 class="mb-0 ms-3">Bitcoin</h5>
@@ -456,7 +459,7 @@
                                 style="width: 10px"
                               >
                                 <use
-                                  xlink:href="assets/images/bootstrap-icons.svg#circle-fill"
+                                  xlink:href="/assets/images/bootstrap-icons.svg#circle-fill"
                                 />
                               </svg>
                               <h5 class="mb-0 ms-3">Ethereum</h5>
@@ -480,7 +483,7 @@
                                 style="width: 10px"
                               >
                                 <use
-                                  xlink:href="assets/images/bootstrap-icons.svg#circle-fill"
+                                  xlink:href="/assets/images/bootstrap-icons.svg#circle-fill"
                                 />
                               </svg>
                               <h5 class="mb-0 ms-3">Litecoin</h5>
@@ -516,14 +519,14 @@
                                   <div class="d-flex align-items-center">
                                     <div class="avatar avatar-md">
                                       <img
-                                        src="assets/images/default-user.jpeg"
+                                        src="/assets/images/default-user.jpeg"
                                       />
                                     </div>
                                     <p class="font-bold ms-3 mb-0">Fred</p>
                                   </div>
                                 </td> -->
                                 <td class="col-3" style="padding: 0;">
-                                  <img class="news-img-01" src="assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
+                                  <img class="news-img-01" src="/assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
                                 </td>
                                 <td class="col-auto">
                                   <p class="mb-0 news-01">
@@ -533,7 +536,7 @@
                               </tr>
                               <tr class="news-row-2">
                                 <td class="col-3" style="padding: 0;">
-                                  <img class="news-img-02" src="assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
+                                  <img class="news-img-02" src="/assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
                                 </td>
                                 <td class="col-auto">
                                   <p class="mb-0 news-02">
@@ -543,7 +546,7 @@
                               </tr>
                               <tr class="news-row-3">
                                 <td class="col-3" style="padding: 0;">
-                                  <img class="news-img-03" src="assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
+                                  <img class="news-img-03" src="/assets/images/skeleton.gif" style="width: 100%; height: 100%;" />
                                 </td>
                                 <td class="col-auto">
                                   <p class="mb-0 news-03">
@@ -743,7 +746,7 @@
           <div class="container">
             <div class="footer clearfix mb-0 text-muted" style="display: flex; justify-content: center; gap: 1rem;">
               <div class="float-start">
-                <p>Decocrypt&copy;</p>
+                <p>Deco Holdings&copy;</p>
               </div>
               <div >
                 <p>
@@ -756,28 +759,28 @@
         </footer>
       </div>
     </div>
-    <script src="mezer/assets/js/bootstrap.js"></script>
-    <script src="mezer/assets/js/app.js"></script>
-    <script src="mezer/assets/js/pages/horizontal-layout.js"></script>
+    <script src="/mezer/assets/js/bootstrap.js"></script>
+    <script src="/mezer/assets/js/app.js"></script>
+    <script src="/mezer/assets/js/pages/horizontal-layout.js"></script>
 
-    <script src="mezer/assets/extensions/apexcharts/apexcharts.min.js"></script>
-    <script src="mezer/assets/js/pages/dashboard.js"></script>
+    <script src="/mezer/assets/extensions/apexcharts/apexcharts.min.js"></script>
+    <script src="/mezer/assets/js/pages/dashboard.js"></script>
 
-    <!-- <script src="main/plugins/jquery/jquery.js"></script>
-    <script src="main/plugins/velocity/velocity.js"></script>
-    <script src="main/plugins/velocity/velocity.ui.js"></script>
-    <script src="main/plugins/bootstrap/js/bootstrap.js"></script>
-    <script src="main/plugins/chosen/chosen.jquery.js"></script>
-    <script src="main/plugins/slider/js/bootstrap-slider.js"></script>
-    <script src="main/plugins/filestyle/bootstrap-filestyle.js"></script>
-    <script src="main/plugins/animo/animo.js"></script>
-    <script src="main/plugins/sparklines/jquery.sparkline.js"></script>
-    <script src="main/plugins/slimscroll/jquery.slimscroll.js"></script>
-    <script src="main/plugins/datatable/media/js/jquery.dataTables.js"></script>
-    <script src="main/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="main/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrapPagination.js"></script>
-    <script src="main/tradify/highcharts.js"></script>
-    <script src="main/tradify/exporting.js"></script> -->
+    <!-- <script src="/main/plugins/jquery/jquery.js"></script>
+    <script src="/main/plugins/velocity/velocity.js"></script>
+    <script src="/main/plugins/velocity/velocity.ui.js"></script>
+    <script src="/main/plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="/main/plugins/chosen/chosen.jquery.js"></script>
+    <script src="/main/plugins/slider/js/bootstrap-slider.js"></script>
+    <script src="/main/plugins/filestyle/bootstrap-filestyle.js"></script>
+    <script src="/main/plugins/animo/animo.js"></script>
+    <script src="/main/plugins/sparklines/jquery.sparkline.js"></script>
+    <script src="/main/plugins/slimscroll/jquery.slimscroll.js"></script>
+    <script src="/main/plugins/datatable/media/js/jquery.dataTables.js"></script>
+    <script src="/main/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="/main/plugins/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrapPagination.js"></script>
+    <script src="/main/tradify/highcharts.js"></script>
+    <script src="/main/tradify/exporting.js"></script> -->
 
     <!-- <script>
       $(document).ready(function () {
@@ -812,6 +815,29 @@
       });
     </script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src="mezer/assets/js/script.js"></script>
+    <script defer src="/mezer/assets/js/script.js"></script>
+    <script>
+      // Dark/light theme toggle with persistence (mazer uses body.theme-dark).
+      (function () {
+        var body = document.body;
+        var toggle = document.getElementById("toggle-dark");
+        if (localStorage.getItem("theme") === "theme-dark") {
+          body.classList.add("theme-dark");
+          if (toggle) toggle.checked = true;
+        }
+        if (toggle) {
+          toggle.addEventListener("change", function () {
+            if (toggle.checked) {
+              body.classList.add("theme-dark");
+              localStorage.setItem("theme", "theme-dark");
+            } else {
+              body.classList.remove("theme-dark");
+              localStorage.removeItem("theme");
+            }
+          });
+        }
+      })();
+    </script>
+    <%- include('partials/line') %>
   </body>
 </html>

@@ -1,0 +1,40 @@
+<% if (typeof lineUrl !== "undefined" && lineUrl) { %>
+<!-- Floating "Chat on LINE" button -> opens the LINE Official Account chat -->
+<a
+  href="<%= lineUrl %>"
+  target="_blank"
+  rel="noopener"
+  aria-label="Chat with support on LINE"
+  style="
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #06c755;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 30px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+  "
+>
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="#fff"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M12 2C6.48 2 2 5.69 2 10.23c0 4.07 3.62 7.48 8.5 8.13.33.07.78.22.9.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.9.56 1.1-.46 5.9-3.47 8.05-5.94C21.4 13.6 22 12 22 10.23 22 5.69 17.52 2 12 2z"
+    />
+  </svg>
+  Chat on LINE
+</a>
+<% } %>

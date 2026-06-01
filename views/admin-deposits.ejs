@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deco Holdings | Deposits</title>
+    <link rel="stylesheet" href="/admin/assets/css/main/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+  </head>
+  <body>
+    <div id="main" style="margin: 0; padding: 2rem">
+      <div class="page-heading d-flex justify-content-between align-items-center">
+        <h3>Deposits</h3>
+        <a href="<%= adminPath %>/users" class="btn btn-outline-primary btn-sm">
+          <i class="bi bi-arrow-left"></i> Dashboard
+        </a>
+      </div>
+
+      <div class="page-content">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Method</th>
+                    <th>Amount</th>
+                    <th>Proof</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (!data.deposits.length) { %>
+                  <tr><td colspan="7" class="text-center text-muted">No deposits yet.</td></tr>
+                  <% } %>
+                  <% data.deposits.forEach(function (d) { %>
+                  <tr>
+                    <td>
+                      <%= d.user ? d.user.fullname : "—" %><br />
+                      <small class="text-muted"><%= d.user ? d.user.email : "" %></small>
+                    </td>
+                    <td><%= d.method %></td>
+                    <td>$<%= d.amount %></td>
+                    <td>
+                      <% if (d.proofUrl) { %>
+                      <a href="<%= d.proofUrl %>" target="_blank">View</a>
+                      <% } else { %>—<% } %>
+                    </td>
+                    <td>
+                      <span class="badge <%= d.status === 'approved' ? 'bg-success' : d.status === 'rejected' ? 'bg-danger' : 'bg-warning' %>">
+                        <%= d.status %>
+                      </span>
+                    </td>
+                    <td><%= d.createdAt.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) %></td>
+                    <td>
+                      <% if (d.status === 'pending') { %>
+                      <button class="btn btn-sm btn-success status-btn" data-id="<%= d._id %>" data-status="approved">Approve</button>
+                      <button class="btn btn-sm btn-danger status-btn" data-id="<%= d._id %>" data-status="rejected">Reject</button>
+                      <% } else { %>—<% } %>
+                    </td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".status-btn").forEach(function (btn) {
+        btn.addEventListener("click", async function () {
+          try {
+            const res = await fetch(
+              "<%= adminPath %>/deposits/" + btn.getAttribute("data-id"),
+              {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status: btn.getAttribute("data-status") }),
+              }
+            );
+            if (!res.ok) throw new Error("failed");
+            location.reload();
+          } catch (e) {
+            alert("Could not update deposit.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

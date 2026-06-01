@@ -20,10 +20,15 @@ class APIFeatures {
 
   search() {
     if (this.queryString.search) {
-      let searchKey = this.queryString.search;
-      //make the search key in sensitive
-      searchKey = searchKey.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-      this.query = this.query.find({ $text: { $search: searchKey } });
+      // Case-insensitive partial match across name, email and type.
+      const escaped = this.queryString.search.replace(
+        /[-[\]{}()*+?.,\\^$|#\s]/g,
+        "\\$&"
+      );
+      const regex = new RegExp(escaped, "i");
+      this.query = this.query.find({
+        $or: [{ fullname: regex }, { email: regex }, { type: regex }],
+      });
     } else {
       this.query = this.query.find();
     }

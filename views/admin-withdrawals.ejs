@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deco Holdings | Withdrawals</title>
+    <link rel="stylesheet" href="/admin/assets/css/main/app.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/admin/assets/images/logo/favicon-32x32.png"
+    />
+  </head>
+  <body>
+    <div id="main" style="margin: 0; padding: 2rem">
+      <div class="page-heading d-flex justify-content-between align-items-center">
+        <h3>Withdrawal Requests</h3>
+        <a href="<%= adminPath %>/users" class="btn btn-outline-primary btn-sm">
+          <i class="bi bi-arrow-left"></i> Dashboard
+        </a>
+      </div>
+
+      <div class="page-content">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Method</th>
+                    <th>Amount</th>
+                    <th>Destination</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (!data.withdrawals.length) { %>
+                  <tr><td colspan="7" class="text-center text-muted">No withdrawal requests yet.</td></tr>
+                  <% } %>
+                  <% data.withdrawals.forEach(function (w) {
+                       const dest = w.destination || {};
+                       const destText = w.method === 'btc'
+                         ? (dest.address || '—')
+                         : [dest.bankName, dest.accountHolderName, dest.accountNumber].filter(Boolean).join(' · ');
+                  %>
+                  <tr>
+                    <td>
+                      <%= w.user ? w.user.fullname : "—" %><br />
+                      <small class="text-muted"><%= w.user ? w.user.email : "" %></small>
+                    </td>
+                    <td><%= w.method === 'btc' ? 'Bitcoin' : 'Bank' %></td>
+                    <td>$<%= w.amount %></td>
+                    <td style="max-width: 260px; word-break: break-all">
+                      <%= destText || '—' %>
+                    </td>
+                    <td>
+                      <span class="badge <%= w.status === 'approved' ? 'bg-success' : w.status === 'rejected' ? 'bg-danger' : 'bg-warning' %>">
+                        <%= w.status %>
+                      </span>
+                    </td>
+                    <td><%= w.createdAt.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) %></td>
+                    <td>
+                      <% if (w.status === 'pending') { %>
+                      <button class="btn btn-sm btn-success status-btn" data-id="<%= w._id %>" data-status="approved">Approve</button>
+                      <button class="btn btn-sm btn-danger status-btn" data-id="<%= w._id %>" data-status="rejected">Reject</button>
+                      <% } else { %>—<% } %>
+                    </td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".status-btn").forEach(function (btn) {
+        btn.addEventListener("click", async function () {
+          try {
+            const res = await fetch(
+              "<%= adminPath %>/withdrawals/" + btn.getAttribute("data-id"),
+              {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status: btn.getAttribute("data-status") }),
+              }
+            );
+            if (!res.ok) throw new Error("failed");
+            location.reload();
+          } catch (e) {
+            alert("Could not update withdrawal request.");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

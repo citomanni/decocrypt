@@ -45,7 +45,7 @@
 
     <script defer src="/funding/js/app.js"></script>
 
-    <title>Decocrypt | Secure Your Investment</title>
+    <title>Deco Holdings | Secure Your Investment</title>
   </head>
   <body>
     <nav class="navbar">
@@ -65,7 +65,7 @@
           });
       </script>
       <div style="display: flex; align-items: center">
-        <h2 class="header__logo mb-sm gradient-text">Decocrypt</h2>
+        <h2 class="header__logo mb-sm gradient-text">Deco Holdings</h2>
         <img
           style="margin-right: 4px"
           class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"
@@ -259,15 +259,20 @@
           <!-- Selected pledge start -->
           <div class="open--section">
             <hr />
-            <input type="text" placeholder=" Enter your btc address" />
+            <input
+              type="text"
+              id="wd-btc-address"
+              placeholder=" Enter your btc address"
+            />
             <input
               class="pledge-money"
+              id="wd-btc-amount"
               type="text"
               placeholder="$  0.00"
               value=""
             />
 
-            <button class="pledge-btn">Continue</button>
+            <button class="pledge-btn" data-method="btc">Continue</button>
           </div>
           <!-- Selected pledge end  -->
         </div>
@@ -344,11 +349,12 @@
               <div style="display: flex; justify-content: space-around">
                 <input
                   class="pledge-money"
+                  id="wd-bank-amount"
                   type="text"
                   placeholder="$  0.00"
                   value=""
                 />
-                <button class="pledge-btn">Continue</button>
+                <button class="pledge-btn" data-method="bank">Continue</button>
               </div>
             </div>
           </div>
@@ -373,5 +379,70 @@
         <button class="close-btn-success">Got it!</button>
       </div>
     </div>
+    <script>
+      // Re-wire the "Continue" buttons to submit a withdrawal request to the
+      // backend first, and only then show the success overlay. Runs in
+      // DOMContentLoaded (after the deferred funding app.js has bound its own
+      // click handler) and clones each button to strip that handler.
+      document.addEventListener("DOMContentLoaded", function () {
+        var userId = "<%= data.user._id %>";
+        var successOverlay = document.querySelector(".overlay__success");
+        var modalOverlay = document.querySelector(".overlay__modal");
+
+        function parseAmount(v) {
+          return Number(String(v).replace(/[^0-9.]/g, "")) || 0;
+        }
+
+        function val(id) {
+          var el = document.getElementById(id);
+          return el ? el.value : "";
+        }
+
+        function submitWithdrawal(method) {
+          var payload = { method: method };
+          if (method === "btc") {
+            payload.address = val("wd-btc-address");
+            payload.amount = parseAmount(val("wd-btc-amount"));
+          } else {
+            payload.bankName = val("bankName");
+            payload.accountHolderName = val("accountHolderName");
+            payload.accountNumber = val("accountNumber");
+            payload.branchCode = val("branchCode");
+            payload.ibanRoutingNumber = val("ibanRoutingNumber");
+            payload.swiftBic = val("swiftBic");
+            payload.amount = parseAmount(val("wd-bank-amount"));
+          }
+
+          fetch("/users/" + userId + "/withdrawal-request", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          })
+            .then(function (r) {
+              if (!r.ok) throw new Error("failed");
+              return r.json();
+            })
+            .then(function () {
+              if (modalOverlay)
+                modalOverlay.classList.add("overlay__inactive");
+              if (successOverlay)
+                successOverlay.classList.remove("overlay__inactive");
+            })
+            .catch(function (e) {
+              console.error("Withdrawal request failed:", e);
+              alert("Could not submit withdrawal request. Please try again.");
+            });
+        }
+
+        document.querySelectorAll(".pledge-btn").forEach(function (btn) {
+          var fresh = btn.cloneNode(true);
+          btn.parentNode.replaceChild(fresh, btn);
+          fresh.addEventListener("click", function () {
+            submitWithdrawal(fresh.getAttribute("data-method") || "btc");
+          });
+        });
+      });
+    </script>
+    <%- include('partials/line') %>
   </body>
 </html>
